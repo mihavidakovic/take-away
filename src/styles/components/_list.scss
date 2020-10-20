@@ -41,23 +41,6 @@
             overflow: hidden;
             position: relative;
             flex-shrink: 0;
-
-            .List__item--status {
-                position: absolute;
-                left: -1rem;
-                top: -0.5rem;
-                width: 3rem;
-                height: 1rem;
-                transform: rotate(-45deg);
-
-                &.status__open {
-                    background-color: rgba(#2aef4e, 1);
-                }
-
-                &.status__closed {
-                    background-color: rgba(#ed3939, 1);
-                }
-            }
         }
 
         .List__item--info {
@@ -68,10 +51,35 @@
             width: 100%;
 
             .info__title {
-                font-weight: bold;
-                font-size: rem(16);
-                margin-bottom: 0.1rem;
-                color: rgba(#000, 0.8);
+                display: flex;
+                flex-flow: row;
+                align-items: center;
+
+                .info__title--text {
+                    font-weight: bold;
+                    font-size: rem(16);
+                    margin-bottom: 0.1rem;
+                    color: rgba(#000, 0.8);
+                    margin-right: 0.35rem;
+                    max-width: 90%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .item__status {
+                    width: 0.4rem;
+                    height: 0.4rem;
+                    border-radius: 100%;
+
+                    &.item__status--open {
+                        background-color: rgba(#1bb737, 1);
+                    }
+    
+                    &.item__status--closed {
+                        background-color: rgba(#ed3939, 1);
+                    }
+                }
             }
 
             .info__description {

@@ -6,12 +6,12 @@ export default function ListItem(props) {
             <div className="List__item--image" style={{
                 'backgroundImage': 'url(' + props.image + ')'
             }}>
-                <div className="List__item--status status__open"></div>
             </div>
             <div className="List__item--info">
-                <span className="info__title" title={props.title}>
-                    {props.title}
-                </span>
+                <div className="info__title" title={props.title}>
+                    <span className="info__title--text">{props.title}</span>
+                    <span className="item__status item__status--open"></span>
+                </div>
                 <span className="info__description">
                     {props.description}
                 </span>
