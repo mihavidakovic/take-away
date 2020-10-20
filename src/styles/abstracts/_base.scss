@@ -1,0 +1,28 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Inter', sans-serif;
+	background-color: #fff;
+}
+
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+.subpage {
+	margin-top: calc(8vh + 1rem);
+	
+	@include breakpoint(md) {
+		margin-top: calc(15vh + 1rem);
+	}
+}
+
+.loading__spinner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

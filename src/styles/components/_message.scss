@@ -1,0 +1,29 @@
+.message {
+	background-color: rgba($primary-color, 0.1);
+	padding: $global-padding / 1.5 $global-padding;
+	border-radius: 4px;
+	color: rgba(#000, 0.8);
+	font-size: 0.8rem;
+	margin: $global-margin / 2 0;
+	display: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	flex-flow: row;
+	align-items: center;
+	justify-content: space-between;
+	
+	&.visible {
+		display: flex;
+	}
+
+	.icon {
+		color: rgba(darken($primary-color, 20%), 0.6);
+		cursor: pointer;
+		
+		&:hover {
+			color: rgba(darken($primary-color, 20%), 0.8);
+		}
+	}
+}

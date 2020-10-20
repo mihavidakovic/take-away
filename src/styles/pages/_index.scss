@@ -1,0 +1,43 @@
+.home {
+	margin-top: $global-margin * 4;
+
+	.container {
+		display: flex;
+		flex-flow: column;
+		
+		@include breakpoint(md) {
+			flex-flow: row-reverse;
+		}
+
+		.graph {
+			width: 100%;
+			margin-bottom: $global-margin;
+			
+			@include breakpoint(md) {
+				width: 60vw;
+				padding-right: $global-padding / 2;
+				margin-bottom: 0;
+			}
+
+			@include breakpoint(lg) {
+				width: 60vw;
+				padding-right: $global-padding / 2;
+				margin-bottom: 0;
+			}
+		}
+
+		.add {
+			width: 100%;
+			
+			@include breakpoint(md) {
+				width: 30vw;
+				padding-left: $global-padding / 2;
+			}
+
+			@include breakpoint(lg) {
+				width: 30vw;
+				padding-left: $global-padding / 2;
+			}
+		}
+	}
+}

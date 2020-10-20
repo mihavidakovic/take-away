@@ -1,0 +1,18 @@
+.add {
+	display: flex;
+	flex-flow: column;
+	
+	.add__form {
+		display: flex;
+		flex-flow: row;
+		
+		.input {
+			margin-right: $global-margin;
+			width: 100%;
+		}
+
+		.btn {
+			flex-shrink: 0;
+		}
+	}
+}
