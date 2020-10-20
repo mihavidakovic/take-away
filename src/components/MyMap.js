@@ -1,20 +1,19 @@
-import React, { useState, setState, useEffect } from 'react';
+import React, { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-function Map(props) {
-
+export default function MyMap(props)  {
     const [data, setData] = useState({
         center: {
-            lat: 59.95,
-            lng: 30.33
+            lat: 46.1662128,
+            lng: 14.997597
           },
-          zoom: 11
+          zoom: 8.7
     })
 
     return (
         <div className="Map">
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyDml5RixRjykZ_s4C-rfd2FXCFt0q2y_Z8" }}
+          bootstrapURLKeys={{ key: process.env.GMAP_API }}
           defaultCenter={data.center}
           defaultZoom={data.zoom}
         >
@@ -22,5 +21,3 @@ function Map(props) {
         </div>
     );
 }
-
-export default Map;
