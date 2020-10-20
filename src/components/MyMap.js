@@ -29,8 +29,6 @@ export default function MyMap(props) {
     }
   }));
 
-  console.log(points)
-
   const { clusters, supercluster } = useSupercluster({
     points,
     bounds,
@@ -43,7 +41,7 @@ export default function MyMap(props) {
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_GMAP_API }}
         center={position || { lat: 46.1437671, lng: 13.8719048 }}
-        defaultZoom={8.5}
+        defaultZoom={8.3}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map }) => {
           mapRef.current = map;

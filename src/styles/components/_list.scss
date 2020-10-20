@@ -1,0 +1,98 @@
+.List {
+    width: 30vw;
+    height: calc(100vh - 5rem);
+    position: relative;
+    margin-top: 5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-flow: column;
+    position: relative;
+
+    .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgba(#000, 0.45);
+    }
+
+    .List__item {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        padding: 1rem;
+        cursor: pointer;
+        user-select: none;
+        transition: 200ms all ease-in-out;
+
+        &:not(:last-of-type) {
+            border-bottom: 1px solid rgba(#000, 0.1);
+        }
+
+        &:hover {
+            background-color: rgba(#000, 0.018);
+        }
+
+        .List__item--image {
+            width: 4rem;
+            height: 4rem;
+            background-size: cover;
+            border-radius: 0.4rem;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+
+            .List__item--status {
+                position: absolute;
+                left: -1rem;
+                top: -0.5rem;
+                width: 3rem;
+                height: 1rem;
+                transform: rotate(-45deg);
+
+                &.status__open {
+                    background-color: rgba(#2aef4e, 1);
+                }
+
+                &.status__closed {
+                    background-color: rgba(#ed3939, 1);
+                }
+            }
+        }
+
+        .List__item--info {
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            padding-left: 0.5rem;
+            width: 100%;
+
+            .info__title {
+                font-weight: bold;
+                font-size: rem(16);
+                margin-bottom: 0.1rem;
+                color: rgba(#000, 0.8);
+            }
+
+            .info__description {
+                font-size: rem(12);
+                color: rgba(#000, 0.55);
+            }
+        }
+
+        .List__item--action {
+            flex-shrink: 0;
+            flex: 1;
+            display: flex;
+            width: 3rem;
+            display: none;
+
+            div {
+                flex-shrink: 0;
+                width: 2rem;
+                height: 2rem;
+                background-color: red;
+            }
+        }
+    }
+}

@@ -6,7 +6,13 @@ export default function Header() {
         <header className="header">
             <div className="container">
                 <div className="logo">
-                    <img src={logo} />
+                    <div className="logo__box">
+                        <img src={logo} />
+                    </div>
+                    <div className="logo__text">
+                        <span className="logo__name">Take-away.si</span>
+                        <span className="logo__subname">Nadji in naroči</span>
+                    </div>
                 </div>
                 <div className="nav">
                     <span>

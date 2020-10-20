@@ -1,6 +1,6 @@
 .Map {
     height: calc(100vh - 5rem);
-    width: 100%;
+    width: 70vw;
     margin-top: 5rem;
 
     .Map__marker {
@@ -13,17 +13,29 @@
         border-radius: 0.25rem;
         box-shadow: 0 3px 5px 0 rgba($primary-color, 0.6);
         font-size: rem(12);
-        
+        cursor: pointer;
+        transition: 200ms all ease-in-out;
+
+        &:hover {
+            background-color: darken($primary-color, 5%);
+        }
     }
 
     .cluster-marker {
         color: #fff;
+        font-weight: bold;
         background: $primary-color;
         border-radius: 50%;
         padding: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
+        transition: 200ms all ease-in-out;
+
+        &:hover {
+            background-color: darken($primary-color, 5%);
+        }
     }
 
     .crime-marker {
