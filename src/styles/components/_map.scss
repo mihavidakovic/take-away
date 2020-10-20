@@ -1,10 +1,24 @@
 .Map {
-    height: 100vh;
+    height: calc(100vh - 5rem);
     width: 100%;
-    background-color: red;
+    margin-top: 5rem;
+
+    .Map__marker {
+        background-color: $primary-color;
+        color: #fff;
+        padding: 0.4rem 0.8rem;
+        min-width: 100%;
+        position: absolute;
+        white-space: nowrap;
+        border-radius: 0.25rem;
+        box-shadow: 0 3px 5px 0 rgba($primary-color, 0.6);
+        font-size: rem(12);
+        
+    }
+
     .cluster-marker {
         color: #fff;
-        background: #1978c8;
+        background: $primary-color;
         border-radius: 50%;
         padding: 10px;
         display: flex;
