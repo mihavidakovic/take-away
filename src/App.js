@@ -30,13 +30,13 @@ function App() {
       <div className="App">
         <Header />
         <main>
+        <SelectedRestaurantProvider>
           <MyMap />
           <div className="Sidebar">
-            <SelectedRestaurantProvider>
               <SelectedRestaurant />
               <List data={data} />
-            </SelectedRestaurantProvider>
           </div>
+          </SelectedRestaurantProvider>
         </main>
       </div>
   );

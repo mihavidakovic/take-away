@@ -24,6 +24,8 @@ function SelectedRestaurant() {
                 <div className="SelectedRestaurant__info">
                     <span className="SelectedRestaurant__info--title">{data.title}</span>
                     <span className="SelectedRestaurant__info--description">{data.description}</span>
+                    <span className="SelectedRestaurant__info--description">{data.lon}</span>
+                    <span className="SelectedRestaurant__info--description">{data.lat}</span>
                 </div>
             </div>
         )

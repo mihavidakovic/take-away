@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import useSwr from "swr";
 import GoogleMapReact from "google-map-react";
 import useSupercluster from "use-supercluster";
+import {SelectedRestaurantContext} from '../contexts/SelectedRestaurantContext';
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
@@ -12,6 +13,7 @@ export default function MyMap(props) {
   const [bounds, setBounds] = useState(null);
   const [zoom, setZoom] = useState(10);
   const [position, setPosition] = useState({ lat: 46.0845131, lng: 14.8499052 })
+  const {SelectedRestaurant, changeSelectedRestaurant} = useContext(SelectedRestaurantContext)
 
   const url =
     "https://take-away-si.herokuapp.com/restaurants";
@@ -19,7 +21,13 @@ export default function MyMap(props) {
   const restaurants = data && !error ? data.slice(0, 2000) : [];
   const points = restaurants.map(restaurant => ({
     type: "Feature",
-    properties: { cluster: false, restaurantName: restaurant.title, restaurantId: restaurant._id, category: restaurant.description },
+    properties: { 
+      cluster: false, 
+      restaurantName: restaurant.title, 
+      restaurantId: restaurant._id, 
+      category: restaurant.description,
+      data: restaurant
+    },
     geometry: {
       type: "Point",
       coordinates: [
@@ -35,6 +43,10 @@ export default function MyMap(props) {
     zoom,
     options: { radius: 75, maxZoom: 20 }
   });
+  function handleSelectRestaurant(id, title, description, image, tel, lon, lat, zoom, visible) {
+    changeSelectedRestaurant(id, title, description, image, tel, lon, lat, zoom, visible)
+    console.log("opa")
+  }
 
   return (
     <div className="Map">
@@ -91,8 +103,8 @@ export default function MyMap(props) {
             );
           }
 
-          return (
-            <Marker
+        return (
+              <Marker
               key={`restaurant-${cluster.properties.restaurantId}`}
               lat={latitude}
               lng={longitude}
@@ -102,6 +114,17 @@ export default function MyMap(props) {
                 onClick={() => {
                   setPosition({ lat: latitude, lng: longitude })
                   mapRef.current.setZoom(17)
+                  handleSelectRestaurant(
+                    cluster.properties.data._id,
+                    cluster.properties.data.title,
+                    cluster.properties.data.description,
+                    cluster.properties.data.image,
+                    cluster.properties.data.tel,
+                    cluster.properties.data.lon,
+                    cluster.properties.data.lat,
+                    3,
+                    1
+                  )
                 }}        
               >
                 <span>{cluster.properties.restaurantName}</span>
