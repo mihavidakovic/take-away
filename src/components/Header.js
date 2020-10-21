@@ -11,7 +11,7 @@ export default function Header() {
                     </div>
                     <div className="logo__text">
                         <span className="logo__name">Take-away.si</span>
-                        <span className="logo__subname">Nadji in naroči</span>
+                        <span className="logo__subname">Najdi in naroči</span>
                     </div>
                 </div>
                 <div className="nav">
