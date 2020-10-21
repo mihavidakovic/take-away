@@ -40,6 +40,10 @@ main {
                 0 7px 5px 0 rgba($primary-color, 0.2),
                 0 4px 20px 0 rgba($primary-color, 0.6);
         }
+
+        @include breakpoint(md) {
+            display: none;
+        }
     }
 
     .Map {
@@ -65,6 +69,9 @@ main {
         z-index: 4;
         background-color: #fff;
         display: none;
+        box-shadow: 
+            -3px 0 3px 0 rgba(#000, 0.03),
+            -6px 0 20px 0 rgba(#000, 0.05);
 
         @include breakpoint(md) {
             width: 30vw;

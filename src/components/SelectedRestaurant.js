@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaCheck, FaTimes, FaPhoneVolume } from 'react-icons/fa';
 import { motion } from "framer-motion"
 
 const list = {
@@ -40,10 +40,25 @@ function SelectedRestaurant() {
                     </div>
                 </div>
                 <div className="SelectedRestaurant__info">
-                    <span className="SelectedRestaurant__info--title">{data.title}</span>
-                    <span className="SelectedRestaurant__info--description">{data.description}</span>
-                    <span className="SelectedRestaurant__info--description">{data.lon}</span>
-                    <span className="SelectedRestaurant__info--description">{data.lat}</span>
+                    <div className="info__left">
+                        <span className="SelectedRestaurant__info--title">{data.title}</span>
+                        <span className="SelectedRestaurant__info--description">{data.description}</span>
+
+                    </div>
+                    <a href="tel:0404040" className="info__right">
+                        <FaPhoneVolume />
+                        <span className="SelectedRestaurant__info--tel">{data.tel}</span>
+                    </a>
+                </div>
+                <div className="SelectedRestaurant__available">
+                <div className="available__delivery unavailable">
+                        <FaTimes />
+                        <span>Dostava</span>
+                    </div>
+                    <div className="available__takeaway available">
+                        <FaCheck />
+                        <span>Osebni prevzem</span>
+                    </div>
                 </div>
             </motion.div>
         )
