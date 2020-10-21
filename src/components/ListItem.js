@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ListItem(props) {
     return (
-        <div className="List__item">
+        <>
             <div className="List__item--image" style={{
                 'backgroundImage': 'url(' + props.image + ')'
             }}>
@@ -19,6 +19,6 @@ export default function ListItem(props) {
             <div className="List__item--action">
                     <div></div>
                 </div>
-        </div>
+        </>
     );
 }

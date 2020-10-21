@@ -7,7 +7,7 @@ export default function Header() {
             <div className="container">
                 <div className="logo">
                     <div className="logo__box">
-                        <img src={logo} />
+                        <img src={logo} alt="logo" />
                     </div>
                     <div className="logo__text">
                         <span className="logo__name">Take-away.si</span>

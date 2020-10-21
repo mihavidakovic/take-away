@@ -1,0 +1,34 @@
+.Search {
+    border-bottom: 1px solid rgba(#000, 0.15);
+    position: relative;
+
+    input {
+        padding: 1rem 1rem 1rem 2.3rem;
+        height: 3rem;
+        width: 100%;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        position: relative;
+        z-index: 2;
+        transition: 200ms all ease-in-out;
+
+        &::placeholder {
+            color: rgba(#000, 0.3);
+        }
+
+        &:active, &:focus, &:hover {
+            background-color: rgba(#000, 0.01);
+        }
+    }
+
+    .Search__icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.8rem;
+        color: rgba(#000, 0.3);
+        z-index: 1;
+    }
+}

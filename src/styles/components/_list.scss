@@ -1,12 +1,8 @@
 .List {
-    width: 30vw;
-    height: calc(100vh - 5rem);
-    position: relative;
-    margin-top: 5rem;
-    overflow-y: auto;
     display: flex;
     flex-flow: column;
     position: relative;
+    height: 100%;
 
     .loading {
         position: absolute;
@@ -14,6 +10,11 @@
         left: 50%;
         transform: translate(-50%, -50%);
         color: rgba(#000, 0.45);
+    }
+
+    .List__container {
+        height: calc(100% - 3rem);
+        overflow-y: auto;
     }
 
     .List__item {
@@ -31,6 +32,10 @@
 
         &:hover {
             background-color: rgba(#000, 0.018);
+        }
+
+        &:active {
+            background-color: rgba(#000, 0.035);
         }
 
         .List__item--image {

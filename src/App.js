@@ -1,9 +1,12 @@
-import React, { useState, setState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/styles.scss';
 
 import Header from "./components/Header.js";
 import MyMap from "./components/MyMap.js";
 import List from "./components/List.js";
+import SelectedRestaurant from "./components/SelectedRestaurant.js";
+
+import SelectedRestaurantProvider from './contexts/SelectedRestaurantContext';
 
 function App() {
 
@@ -24,13 +27,18 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <MyMap />
-        <List data={data} />
-      </main>
-    </div>
+      <div className="App">
+        <Header />
+        <main>
+          <MyMap />
+          <div className="Sidebar">
+            <SelectedRestaurantProvider>
+              <SelectedRestaurant />
+              <List data={data} />
+            </SelectedRestaurantProvider>
+          </div>
+        </main>
+      </div>
   );
 }
 
