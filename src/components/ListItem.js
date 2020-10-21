@@ -1,19 +1,7 @@
 import React from "react";
-import { geolocated } from "react-geolocated";
 
+import Distance from './Distance';
 function ListItem(props) {
-
-    function myDistance() {
-        if(!props.isGeolocationAvailable) {
-            return "Razdalja ni na voljo"
-        } else if(!props.isGeolocationEnabled) {
-            return "Razdalja onemogočena"
-        } else if(props.coords) {
-            return "pozicija" + props.coords
-        } else {
-            return null
-        }
-    }
     return (
         <>
             <div className="List__item--image" style={{
@@ -28,7 +16,7 @@ function ListItem(props) {
                 <span className="info__description">
                     {props.description}
                 </span>
-                <span>{myDistance()}</span>
+                <Distance location={props.location} restaurantLocation={{lat: props.lat, lon: props.lon}} />
             </div>
             <div className="List__item--action">
                     <div></div>
@@ -37,9 +25,4 @@ function ListItem(props) {
     );
 }
 
-export default geolocated({
-    positionOptions: {
-        enableHighAccuracy: false,
-    },
-    userDecisionTimeout: 1000,
-})(ListItem);
+export default ListItem;

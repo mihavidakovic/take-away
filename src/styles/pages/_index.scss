@@ -1,13 +1,82 @@
 main {
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     align-items: stretch;
 
+    @include breakpoint(md) {
+        flex-flow: row
+    }
+
+    @include breakpoint(xl) {
+        flex-flow: row
+    }
+
+    .Toggle {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        background-color: $primary-color;
+        padding: 0.6rem 1.5rem;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 200ms all ease-in-out;
+        box-shadow: 
+            0 3px 5px 0 rgba($primary-color, 0.2),
+            0 3px 15px 0 rgba($primary-color, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        white-space: nowrap;
+
+        &:hover {
+            background-color: darken($primary-color, 5%);
+            box-shadow: 
+                0 7px 5px 0 rgba($primary-color, 0.2),
+                0 4px 20px 0 rgba($primary-color, 0.6);
+        }
+    }
+
+    .Map {
+        height: calc(100vh - 3.5rem);
+        width: 100vw;
+        margin-top: 3.5rem;
+
+        @include breakpoint(md) {
+            height: calc(100vh - 5rem);
+            width: 70vw;
+            margin-top: 5rem;
+        }
+    }
+
     .Sidebar {
-        width: 30vw;
-        height: calc(100vh - 5rem);
-        position: relative;
-        margin-top: 5rem;
-        overflow-y: hidden;    
+        width: 100vw;
+        height: calc(100vh - 3.5rem);
+        margin-top: 3.5rem;
+        overflow-y: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        background-color: #fff;
+        display: none;
+
+        @include breakpoint(md) {
+            width: 30vw;
+            height: calc(100vh - 5rem);
+            position: relative;
+            margin-top: 5rem;
+            overflow-y: hidden;
+            display: inline;
+        }
+
+        &.visible {
+            display: inline;
+        }
     }
 }

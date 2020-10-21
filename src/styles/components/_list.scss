@@ -63,7 +63,6 @@
                 .info__title--text {
                     font-weight: bold;
                     font-size: rem(16);
-                    margin-bottom: 0.1rem;
                     color: rgba(#000, 0.8);
                     margin-right: 0.35rem;
                     max-width: 90%;
@@ -90,6 +89,20 @@
             .info__description {
                 font-size: rem(12);
                 color: rgba(#000, 0.55);
+                margin-top: 0.1rem;
+            }
+
+            .info__distance {
+                font-size: rem(12);
+                color: rgba(#000, 0.55);
+                margin-top: 0.3rem;
+
+                &.info__distance--empty {
+                    width: 3.7rem;
+                    height: 0.8rem;
+                    background-color: rgba(#000, 0.12);
+                    border-radius: 6px;
+                }
             }
         }
 

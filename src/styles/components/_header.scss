@@ -2,13 +2,17 @@
 	background: rgba(255,255,255, 0.6);
 	position: fixed;
 	width: 100%;
-	height: 5rem;
+	height: 3.5rem;
 	left: 0;
 	top: 0;
 	z-index: 999;
 	box-shadow: 
 		0 3px 6px 0 rgba(#000, 0.05),
 		0 0px 15px 0 rgba(#000, 0.07);
+
+	@include breakpoint(md) {
+		height: 5rem;
+	}
 	
 	.container {
 		display: flex;
@@ -26,8 +30,8 @@
 
 			.logo__box {
 				background-color: $primary-color;
-				width: 3.5rem;
-				height: 3.5rem;
+				width: 2.5rem;
+				height: 2.5rem;
 				cursor: pointer;
 				-webkit-user-select: none;
 				   -moz-user-select: none;
@@ -36,10 +40,16 @@
 				display: flex;
 				flex-flow: row;
 				align-items: center;
-				padding: 0.8rem;
+				padding: 0.5rem;
 				border-radius: 0.5rem;
 				margin-right: 0.8rem;
 
+				@include breakpoint(md) {
+					width: 3.5rem;
+					height: 3.5rem;
+					padding: 0.8rem;
+				}
+			
 				img {
 					width: 100%;
 				}
@@ -52,8 +62,12 @@
 				.logo__name {
 					font-weight: 900;
 					text-transform: uppercase;
-					font-size: 1.2rem;
-					color: $primary-color;	
+					font-size: 1rem;
+					color: $primary-color;
+
+					@include breakpoint(md) {
+						font-size: 1.2rem;
+					}
 				}
 
 				.logo__subname {

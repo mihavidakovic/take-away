@@ -1,23 +1,38 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Search } from './Search';
 import ListItem from './ListItem';
-import {SelectedRestaurantContext} from '../contexts/SelectedRestaurantContext';
+import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
+import { usePosition } from 'use-position';
 
 export default function List(props) {
 
     const [searchValue, setSearchValue] = useState("");
     const [data, setData] = useState([]);
+    const [location, setLocation] = useState({
+        lat: null,
+        lon: null
+    })
 
-    const {SelectedRestaurant, changeSelectedRestaurant} = useContext(SelectedRestaurantContext)
+    const { SelectedRestaurant, changeSelectedRestaurant } = useContext(SelectedRestaurantContext)
 
     useEffect(() => {
         setData(props.data)
+        getLocation()
     }, [props.data])
 
-    
+    function getLocation() {
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                setLocation({ lat: position.coords.latitude, lon: position.coords.longitude });
+            });
+        } else {
+            console.log("no position available")
+        }
+    }
+
     function handleSearch(e) {
         setSearchValue(e)
-    }    
+    }
 
     if (data) {
 
@@ -27,28 +42,31 @@ export default function List(props) {
 
         let items = data
             .filter(data => {
-                if(searchValue === null) {
+                if (searchValue === null) {
                     return data;
-                } else if(data.title.toLowerCase().includes(searchValue.toLowerCase()) || data.description.toLowerCase().includes(searchValue.toLowerCase())) {
+                } else if (data.title.toLowerCase().includes(searchValue.toLowerCase()) || data.description.toLowerCase().includes(searchValue.toLowerCase())) {
                     return data;
                 }
 
                 return null
             })
             .map((data, i) => {
-                    return(
-                        <div className="List__item" onClick={() => handleSelectRestaurant(data._id, data.title, data.description, data.image, data.tel, data.lon, data.lat, 3, 1)}>
-                            <ListItem 
-                                key={i} 
-                                title={data.title} 
-                                description={data.description} 
-                                image={data.image}
-                            />
-                        </div>
-                    )
-                }
+                return (
+                    <div className="List__item" onClick={() => handleSelectRestaurant(data._id, data.title, data.description, data.image, data.tel, data.lon, data.lat, 3, 1)}>
+                        <ListItem
+                            key={i}
+                            title={data.title}
+                            description={data.description}
+                            image={data.image}
+                            lat={data.lat}
+                            lon={data.lon}
+                            location={location}
+                        />
+                    </div>
+                )
+            }
             );
-    
+
         return (
             <div className="List">
                 <Search value={searchValue} onChange={handleSearch} />
@@ -56,9 +74,9 @@ export default function List(props) {
                     {items}
                 </div>
             </div>
-        );    
+        );
     } else {
-        return(
+        return (
             <div className="List">
                 <span className="loading">Nalagam...</span>
             </div>
