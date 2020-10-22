@@ -6,6 +6,7 @@
 @import "abstracts/functions.scss";
 @import "abstracts/variables.scss";
 @import "abstracts/base.scss";
+@import "abstracts/typography.scss";
 
 // Components
 @import "components/container.scss";
@@ -21,3 +22,4 @@
 
 // Pages
 @import "pages/index.scss";
+@import "pages/add.scss";

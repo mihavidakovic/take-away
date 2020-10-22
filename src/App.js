@@ -1,44 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import './styles/styles.scss';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 import Header from "./components/Header.js";
-import MyMap from "./components/MyMap.js";
-import Sidebar from "./components/Sidebar.js";
 
-import SelectedRestaurantProvider from './contexts/SelectedRestaurantContext';
+import Home from "./pages/Home.js";
+import Add from "./pages/Add.js";
 
 function App() {
 
-  const [data, setData] = useState();
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-
-  useEffect(() => {
-    fetch("https://take-away-si.herokuapp.com/restaurants")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setData(result)
-        },
-        (error) => {
-          console.log(error)
-        }
-      )
-  }, [])
-
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <SelectedRestaurantProvider>
-          <MyMap data={data} />
-          <div className="Toggle" onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
-            <span>{isSidebarVisible ? "Pokaži zemljevid" : "Prikaži vse restavracije"}</span>
-          </div>
-          <Sidebar visible={isSidebarVisible} data={data} />
-        </SelectedRestaurantProvider>
-      </main>
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <main>
+          <Switch>
+            <Route exact path="/" children={<Home />} />
+            <Route path="/dodaj" children={<Add />} />
+          </Switch>
+        </main>
+      </div>
+    </Router>
   );
 }
 
