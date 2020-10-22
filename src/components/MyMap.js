@@ -76,6 +76,10 @@ function MyMap(props) {
     }
   ];
 
+  const map = () => {
+    
+  }
+
   if (restaurants) {
     return (
       <div className="Map">

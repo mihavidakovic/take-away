@@ -17,12 +17,27 @@ a {
 	text-decoration: none;
 }
 
+.App {
+	display: flex;
+	flex-flow: column;
+}
+
 .subpage {
-	margin-top: calc(8vh + 1rem);
+    height: calc(100vh - 3.5rem);
+    width: 100vw;
+	margin-top: 3.5rem;
 	
-	@include breakpoint(md) {
-		margin-top: calc(15vh + 1rem);
-	}
+    @include breakpoint(md) {
+        height: calc(100vh - 5rem);
+        margin-top: 5rem;
+        flex-flow: row;
+    }
+
+    @include breakpoint(xl) {
+        height: calc(100vh - 5rem);
+        margin-top: 5rem;
+        flex-flow: row;
+    }
 }
 
 .loading__spinner {
@@ -34,15 +49,12 @@ a {
 
 main {
 	min-height: calc(100vh - 3.5rem);
-	margin-top: 3.5rem;
 
     @include breakpoint(md) {
 		height: calc(100vh - 5rem);
-		margin-top: 5rem;
     }
 
     @include breakpoint(xl) {
 		height: calc(100vh - 5rem);
-		margin-top: 5rem;
     }
 }

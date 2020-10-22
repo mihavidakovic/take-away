@@ -1,3 +1,11 @@
 .Add {
+    padding-top: $global-padding;
 
+    .Form {
+        width: 100%;
+
+        @include breakpoint(md) {
+            width: 50%;
+        }
+    }
 }

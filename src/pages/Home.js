@@ -23,7 +23,7 @@ export default function Home() {
         )
     }, [])    
     return (
-        <>
+        <div className="subpage Home">
             <SelectedRestaurantProvider>
                 <MyMap data={data} />
                 <div className="Toggle" onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
@@ -31,6 +31,6 @@ export default function Home() {
                 </div>
                 <Sidebar visible={isSidebarVisible} data={data} />
             </SelectedRestaurantProvider>
-        </>
+        </div>
     )
 }

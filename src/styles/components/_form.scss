@@ -1,0 +1,25 @@
+.Form {
+
+    .Form__control {
+        display: flex;
+        flex-flow: column;
+        margin-bottom: $global-margin;
+
+        label {
+            margin-bottom: $global-margin / 2;
+            font-weight: 500;
+            font-size: 0.9rem;
+
+            span {
+                color: red;
+            }
+        }
+    }
+
+    .Form__footer {
+        display: flex;
+        flex-flow: row;
+        align-items: flex-start;
+        justify-content: left;
+    }
+}

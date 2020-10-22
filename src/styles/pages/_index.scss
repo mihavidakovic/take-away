@@ -1,7 +1,8 @@
-main {
+.Home {
     display: flex;
     flex-flow: column;
     align-items: stretch;
+    position: relative;
 
     @include breakpoint(md) {
         flex-flow: row;
@@ -53,6 +54,10 @@ main {
         @include breakpoint(md) {
             width: 70vw;
         }
+
+        @include breakpoint(lg) {
+            width: 70vw;
+        }
     }
 
     .Sidebar {
@@ -71,13 +76,19 @@ main {
 
         @include breakpoint(md) {
             width: 30vw;
-            height: 100%;
+            position: relative;
+            overflow-y: hidden;
+            display: inline;
+        }
+    
+        @include breakpoint(lg) {
+            width: 30vw;
             position: relative;
             overflow-y: hidden;
             display: inline;
         }
 
-        &.visible {
+            &.visible {
             display: inline;
         }
     }

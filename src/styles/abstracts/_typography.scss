@@ -1,6 +1,8 @@
 h1, h2, h3, h4 {
     color: rgba(#000, 0.8);
     position: relative;
+    margin-bottom: $global-margin;
+    padding: 0;
 
     &:after {
         content: "";
@@ -12,4 +14,16 @@ h1, h2, h3, h4 {
         background-color: $primary-color;
         border-radius: 100px;
     }
+}
+
+h2 {
+    font-size: 1.6rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+}
+
+h4 {
+    font-size: 1.2rem;
 }
