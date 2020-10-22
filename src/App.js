@@ -51,7 +51,7 @@ function App() {
         <Header />
         <main>
         <SelectedRestaurantProvider>
-          <MyMap />
+          <MyMap data={data} />
           <div className="Toggle" onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
             <span>{isSidebarVisible ? "Pokaži zemljevid" : "Prikaži vse restavracije"}</span>
           </div>

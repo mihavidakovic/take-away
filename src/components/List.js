@@ -52,7 +52,19 @@ export default function List(props) {
             })
             .map((data, i) => {
                 return (
-                    <div className="List__item" onClick={() => handleSelectRestaurant(data._id, data.title, data.description, data.image, data.tel, data.lon, data.lat, 3, 1)}>
+                    <div className="List__item" 
+                    onClick={() => 
+                        handleSelectRestaurant(
+                            data._id, 
+                            data.title, 
+                            data.description, 
+                            data.image, 
+                            data.tel, 
+                            data.lon, 
+                            data.lat, 
+                            15, 
+                            1
+                        )}>
                         <ListItem
                             key={i}
                             title={data.title}

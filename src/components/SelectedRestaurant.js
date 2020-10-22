@@ -26,7 +26,17 @@ function SelectedRestaurant() {
     if (SelectedRestaurant.visible === 1) {
         let data = SelectedRestaurant;
         function goBack() {
-            changeSelectedRestaurant({ visible: 0 })
+            changeSelectedRestaurant(
+                null, 
+                null, 
+                null,
+                null,
+                null, 
+                null, 
+                null, 
+                8, 
+                0
+            )
         }
 
         return (
