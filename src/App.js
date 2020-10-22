@@ -11,6 +11,7 @@ import Header from "./components/Header.js";
 
 import Home from "./pages/Home.js";
 import Add from "./pages/Add.js";
+import Manage from "./pages/Admin/Manage/Manage.js";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
           <Switch>
             <Route exact path="/" children={<Home />} />
             <Route path="/dodaj" children={<Add />} />
+            <Route path="/urejanje" children={<Manage />} />
           </Switch>
         </main>
       </div>

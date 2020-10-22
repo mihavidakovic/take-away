@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function Add() {
-    console.log("opaaaaa")
     return (
         <div className="subpage Add">
             <div className="container">

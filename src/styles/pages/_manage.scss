@@ -1,0 +1,66 @@
+.Manage {
+    padding-top: $global-padding;
+
+    .Manage__restaurants {
+        display: flex;
+        flex-flow: column;
+        margin-bottom: $global-margin * 3;
+
+
+        .restaurant {
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: $global-padding / 2 0;
+
+            &:not(:last-of-type) {
+                border-bottom: 1px solid rgba(#000, 0.1);
+            }
+
+            .restaurant__image {
+                width: 4rem;
+                height: 4rem;
+                background-size: cover;
+                border-radius: 6px;
+                margin-right: $global-margin / 2;
+            }
+
+            .restaurant__info {
+                display: flex;
+                flex-flow: column;
+                flex: 1;
+
+                .info__title {
+                    font-size: 1rem;
+                    font-weight: bold;
+                    margin-bottom: $global-padding / 4;
+                }
+
+                .info__description {
+                    font-size: 0.8rem;
+                    color: rgba(#000, 0.7);
+                    margin-bottom: 0.2rem;
+                }
+
+                .info__createdAt {
+                    font-size: 0.7rem;
+                    color: rgba(#000, 0.5);
+                }
+            }
+
+            .restaurant__actions {
+                display: flex;
+                flex-flow: row;
+
+                .btn {
+                    
+                    &:not(:last-of-type) {
+                        margin-right: $global-margin / 2;
+                    }
+                }
+            }
+        }
+    }
+
+}
