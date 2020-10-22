@@ -3,6 +3,7 @@ import { Search } from './Search';
 import ListItem from './ListItem';
 import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
 import { usePosition } from 'use-position';
+import Loader from 'react-loader-spinner'
 
 export default function List(props) {
 
@@ -90,7 +91,14 @@ export default function List(props) {
     } else {
         return (
             <div className="List">
-                <span className="loading">Nalagam...</span>
+                <Loader
+                    type="Rings"
+                    color="#7BA47F"
+                    height={60}
+                    width={60}
+                    timeout={3000} //3 secs
+                    className="Loading"
+                />
             </div>
         )
     }

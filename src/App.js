@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './styles/styles.scss';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 import Header from "./components/Header.js";
 import MyMap from "./components/MyMap.js";

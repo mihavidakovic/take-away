@@ -1,7 +1,9 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 import {SelectedRestaurantContext} from '../contexts/SelectedRestaurantContext';
 import { GoogleMap, LoadScript, MarkerClusterer, Marker } from '@react-google-maps/api';
+import Loader from 'react-loader-spinner'
 import marker from "../assets/img/marker.svg";
+
 
 
 function MyMap(props) {
@@ -81,9 +83,16 @@ function MyMap(props) {
     );  
   } else {
     return(
-      <>
-        <span>loading</span>
-      </>
+      <div className="Map">
+        <Loader
+          type="Rings"
+          color="#7BA47F"
+          height={60}
+          width={60}
+          timeout={3000} //3 secs
+          className="Loading"
+        />
+      </div>
     )
   }
 
