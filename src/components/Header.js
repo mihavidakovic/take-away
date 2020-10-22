@@ -15,11 +15,8 @@ export default function Header() {
                     </div>
                 </div>
                 <div className="nav">
-                    <span>
-                        Kategorije
-                    </span>
-                    <span>
-                        Išči
+                    <span class="btn btn-primary">
+                        Dodaj restavracijo
                     </span>
                 </div>
             </div>

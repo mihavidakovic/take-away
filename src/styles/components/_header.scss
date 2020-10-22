@@ -84,22 +84,25 @@
 			align-items: center;
 			
 			span {
-				color: rgba($primary-color, 0.8);
 				cursor: pointer;
 				font-size: rem(12);
 				font-weight: 800;
 				text-transform: uppercase;
 				text-decoration: none;
-				
-				&:hover {
-					color: $primary-color;
-				}
 
-				&.active {
-					font-weight: 900;
-					color: $primary-color;
+				&.nav__item {
+					color: rgba($primary-color, 0.8);
+
+					&:hover {
+						color: $primary-color;
+					}
+	
+					&.active {
+						font-weight: 900;
+						color: $primary-color;
+					}
 				}
-				
+								
 				&:not(:last-child) {
 					margin-right: rem(18);
 				}
