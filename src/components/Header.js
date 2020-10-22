@@ -15,7 +15,7 @@ export default function Header() {
                     </div>
                 </div>
                 <div className="nav">
-                    <span class="btn btn-primary">
+                    <span className="btn btn-primary">
                         Dodaj restavracijo
                     </span>
                 </div>

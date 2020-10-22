@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
 import { FaArrowLeft, FaCheck, FaTimes, FaPhoneVolume } from 'react-icons/fa';
 import { motion } from "framer-motion"

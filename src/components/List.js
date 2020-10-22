@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Search } from './Search';
 import ListItem from './ListItem';
 import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
-import { usePosition } from 'use-position';
 import Loader from 'react-loader-spinner'
 
 export default function List(props) {
@@ -14,7 +13,7 @@ export default function List(props) {
         lon: null
     })
 
-    const { SelectedRestaurant, changeSelectedRestaurant } = useContext(SelectedRestaurantContext)
+    const { changeSelectedRestaurant } = useContext(SelectedRestaurantContext)
 
     useEffect(() => {
         setData(props.data)
@@ -53,21 +52,22 @@ export default function List(props) {
             })
             .map((data, i) => {
                 return (
-                    <div className="List__item" 
-                    onClick={() => 
-                        handleSelectRestaurant(
-                            data._id, 
-                            data.title, 
-                            data.description, 
-                            data.image, 
-                            data.tel, 
-                            data.lon, 
-                            data.lat, 
-                            15, 
-                            1
-                        )}>
+                    <div
+                        key={i}
+                        className="List__item"
+                        onClick={() =>
+                            handleSelectRestaurant(
+                                data._id,
+                                data.title,
+                                data.description,
+                                data.image,
+                                data.tel,
+                                data.lon,
+                                data.lat,
+                                15,
+                                1
+                            )}>
                         <ListItem
-                            key={i}
                             title={data.title}
                             description={data.description}
                             image={data.image}

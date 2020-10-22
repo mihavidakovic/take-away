@@ -1,6 +1,4 @@
 import React from 'react'
-import GoogleMapReact from "google-map-react";
-
 
 function Distance(props) {      
     function _getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {

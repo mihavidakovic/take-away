@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/styles.scss';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
@@ -6,7 +6,7 @@ import Header from "./components/Header.js";
 import MyMap from "./components/MyMap.js";
 import Sidebar from "./components/Sidebar.js";
 
-import SelectedRestaurantProvider, { SelectedRestaurantContext } from './contexts/SelectedRestaurantContext';
+import SelectedRestaurantProvider from './contexts/SelectedRestaurantContext';
 
 function App() {
 
@@ -26,8 +26,6 @@ function App() {
       )
   }, [])
 
-  let visible = isSidebarVisible;
-  console.log(visible)
   return (
     <div className="App">
       <Header />

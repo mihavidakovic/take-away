@@ -6,10 +6,10 @@ import SelectedRestaurantComponent from "../components/SelectedRestaurantCompone
 import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
 
 function Sidebar(props) {
-    const {SelectedRestaurant, changeSelectedRestaurant} = useContext(SelectedRestaurantContext);
+    const {SelectedRestaurant} = useContext(SelectedRestaurantContext);
 
     return (
-        <motion.div className={props.visible || SelectedRestaurant.visible == 1 ? "Sidebar visible" : "Sidebar"}>
+        <motion.div className={props.visible || SelectedRestaurant.visible === 1 ? "Sidebar visible" : "Sidebar"}>
             <SelectedRestaurantComponent />
             <List data={props.data} />
         </motion.div>

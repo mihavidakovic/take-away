@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {SelectedRestaurantContext} from '../contexts/SelectedRestaurantContext';
 import { GoogleMap, LoadScript, MarkerClusterer, Marker } from '@react-google-maps/api';
 import Loader from 'react-loader-spinner'
@@ -14,10 +14,6 @@ function MyMap(props) {
     lng: parseFloat(SelectedRestaurant.lat),
     zoom: SelectedRestaurant.zoom
   };
-  const mapContainerStyle = {
-    height: '400px',
-    width: '800px',
-  }
 
   
   const options = {
@@ -27,9 +23,6 @@ function MyMap(props) {
   
   function createKey(location) {
     return parseFloat(location.lat) + parseFloat(location.lon)
-  }
-  function handleSelectRestaurant(id, title, description, image, tel, lon, lat, zoom, visible) {
-    changeSelectedRestaurant(id, title, description, image, tel, lon, lat, zoom, visible)
   }
 
   useEffect(() => {
@@ -43,12 +36,12 @@ function MyMap(props) {
         <LoadScript
           googleMapsApiKey={process.env.REACT_APP_GMAP_API}
           language="sl"
+          mapId="ea6d22f5e288638"
         >
         <GoogleMap id='map' zoom={position.zoom} center={{lat: position.lat, lng: position.lng}}>
           <MarkerClusterer options={options}>
             {(clusterer) =>
               restaurants.map((restaurant) => {
-                console.log(SelectedRestaurant.visible)
                 return(
                   <Marker 
                     key={createKey(restaurant)} 
