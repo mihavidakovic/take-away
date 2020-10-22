@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
+import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
 
-export function Toggle() {
+export default function Toggle(props) {
+    const {SelectedRestaurant, changeSelectedRestaurant} = useContext(SelectedRestaurantContext)
+
+    console.log(props)
     return (
-        <div className="Toggle">
-            toggle
+        <div className="Toggle" onClick={() => 
+            changeSelectedRestaurant()}>
+            <span>{1 ? "Pokaži zemljevid" : "Prikaži vse restavracije"}</span>
         </div>
-    );
+);
 }

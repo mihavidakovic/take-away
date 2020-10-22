@@ -28,7 +28,6 @@ function MyMap(props) {
   }
   function handleSelectRestaurant(id, title, description, image, tel, lon, lat, zoom, visible) {
     changeSelectedRestaurant(id, title, description, image, tel, lon, lat, zoom, visible)
-    console.log("opa")
   }
 
   useEffect(() => {
@@ -37,7 +36,6 @@ function MyMap(props) {
 
 
   if(restaurants) {
-    console.log(SelectedRestaurant)
     return (
       <div className="Map">
         <LoadScript
@@ -48,6 +46,7 @@ function MyMap(props) {
           <MarkerClusterer options={options}>
             {(clusterer) =>
               restaurants.map((restaurant) => {
+                console.log(SelectedRestaurant.visible)
                 return(
                   <Marker 
                     key={createKey(restaurant)} 
