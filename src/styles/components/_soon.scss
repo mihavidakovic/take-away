@@ -1,0 +1,72 @@
+.Soon {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        cursor: pointer;
+        margin: 4rem 0;
+
+        .logo__box {
+            background-color: $primary-color;
+            width: 3.5rem;
+            height: 3.5rem;
+            cursor: pointer;
+            -webkit-user-select: none;
+               -moz-user-select: none;
+                -ms-user-select: none;
+                    user-select: none;
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin-right: 0.8rem;
+
+            @include breakpoint(md) {
+                width: 5.5rem;
+                height: 5.5rem;
+                padding: 0.9rem;
+            }
+        
+            img {
+                width: 100%;
+            }
+        }
+        
+        .logo__text {
+            display: flex;
+            flex-flow: column;
+
+            .logo__name {
+                font-weight: 900;
+                text-transform: uppercase;
+                font-size: 1rem;
+                color: $primary-color;
+
+                @include breakpoint(md) {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .logo__subname {
+                font-size: 1rem;
+                color: rgba(#000, 0.6);
+                margin-left: 0.1rem;
+            }
+        }
+    }
+
+    .Soon__text {
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: rgba(#000, 0.3);
+    }
+}

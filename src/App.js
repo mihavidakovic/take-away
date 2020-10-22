@@ -5,6 +5,7 @@ import Header from "./components/Header.js";
 import MyMap from "./components/MyMap.js";
 import List from "./components/List.js";
 import SelectedRestaurant from "./components/SelectedRestaurant.js";
+import Soon from "./components/Soon.js";
 
 import SelectedRestaurantProvider from './contexts/SelectedRestaurantContext';
 
@@ -47,21 +48,24 @@ function App() {
   }, [])
 
   return (
-      <div className="App">
-        <Header />
-        <main>
-        <SelectedRestaurantProvider>
-          <MyMap />
-          <div className="Toggle" onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
-            <span>{isSidebarVisible ? "Pokaži zemljevid" : "Prikaži vse restavracije"}</span>
-          </div>
-          <motion.div className={isSidebarVisible ? "Sidebar visible" : "Sidebar"} initial="hidden" animate="visible" variants={sidebar}>
-              <SelectedRestaurant />
-              <List data={data} />
-          </motion.div>
-          </SelectedRestaurantProvider>
-        </main>
-      </div>
+      <>
+        <Soon />
+      </>
+      // <div className="App">
+      //   <Header />
+      //   <main>
+      //   <SelectedRestaurantProvider>
+      //     <MyMap />
+      //     <div className="Toggle" onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
+      //       <span>{isSidebarVisible ? "Pokaži zemljevid" : "Prikaži vse restavracije"}</span>
+      //     </div>
+      //     <motion.div className={isSidebarVisible ? "Sidebar visible" : "Sidebar"} initial="hidden" animate="visible" variants={sidebar}>
+      //         <SelectedRestaurant />
+      //         <List data={data} />
+      //     </motion.div>
+      //     </SelectedRestaurantProvider>
+      //   </main>
+      // </div>
   );
 }
 
