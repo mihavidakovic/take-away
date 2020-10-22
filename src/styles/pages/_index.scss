@@ -14,12 +14,12 @@
 
     .Toggle {
         position: absolute;
-        bottom: $global-margin;
+        bottom: $global-margin * 3;
         left: 50%;
         transform: translateX(-50%);
         z-index: 10;
         background-color: $primary-color;
-        padding: 0.6rem 1.5rem;
+        padding: 0.8rem 2rem;
         border-radius: 100px;
         font-size: 0.8rem;
         color: #fff;
