@@ -20,7 +20,7 @@ export default function Header() {
                     </div>
                 </Link>
                 <div className="nav">
-                    <Link to="/dodaj">
+                    <Link to="/dodaj" className="nav__item">
                         <span className="btn btn-primary">
                             Dodaj restavracijo
                         </span>

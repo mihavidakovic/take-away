@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/sl'
+import {
+    Link
+} from "react-router-dom";
+
 
 export default function Restaurant(props) {
 
@@ -73,9 +77,9 @@ export default function Restaurant(props) {
                         }}
                     >Objavi</div>
                 }
-                <div className="btn btn-primary">
+                <Link to={"/administracija/urejanje/" + props.data._id} className="btn btn-primary">
                     Uredi
-                </div>
+                </Link>
             </div>
         </div>
     )

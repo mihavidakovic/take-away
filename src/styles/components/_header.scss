@@ -85,30 +85,28 @@
 			flex-flow: row;
 			align-items: center;
 			
-			span {
+			.nav__item {
+				display: block;
 				cursor: pointer;
 				font-size: rem(12);
 				font-weight: 800;
 				text-transform: uppercase;
 				text-decoration: none;
+				color: rgba($primary-color, 0.8);
 
-				&.nav__item {
-					color: rgba($primary-color, 0.8);
-
-					&:hover {
-						color: $primary-color;
-					}
-	
-					&.active {
-						font-weight: 900;
-						color: $primary-color;
-					}
-				}
-								
-				&:not(:last-child) {
+				&:not(:last-of-type) {
 					margin-right: rem(18);
 				}
-			}
+
+				&:hover {
+					color: $primary-color;
+				}
+
+				&.active {
+					font-weight: 900;
+					color: $primary-color;
+				}
+			}					
 		}
 	}
 }

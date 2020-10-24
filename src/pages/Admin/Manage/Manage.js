@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 import Restaurant from "./Restaurant";
+import NotAvailable from "../NotAvailable.js";
 
-export default function Manage() {
+function Manage() {
+    const { user } = useAuth0();
 
     const [restaurants, setRestaurants] = useState();
 
@@ -70,3 +73,7 @@ export default function Manage() {
         )
     }
 }
+export default withAuthenticationRequired(Manage, {
+    onRedirecting: () => <NotAvailable />,
+  });
+  
