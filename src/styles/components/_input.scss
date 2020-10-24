@@ -1,6 +1,5 @@
 .input {
 	padding: $global-padding / 1.5 $global-padding / 1.8;
-	font-family: "Inter";
 	font-size: 0.9rem;
 	outline-style: none;
 	border: 1px solid rgba(#000, 0.15);
@@ -16,5 +15,9 @@
 	
 	&::placeholder {
 		color: rgba(#000, 0.35);
+	}
+
+	&[type=checkbox] {
+		width: 15px;
 	}
 }

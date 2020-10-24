@@ -5,10 +5,11 @@
         display: flex;
         flex-flow: column;
         margin-bottom: $global-margin;
+        justify-content: start;
 
         label {
             margin-bottom: $global-margin / 2;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.9rem;
 
             span {

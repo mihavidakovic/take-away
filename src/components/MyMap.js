@@ -158,6 +158,8 @@ function MyMap(props) {
                         restaurant.tel,
                         restaurant.lon,
                         restaurant.lat,
+                        restaurant.delivery,
+                        restaurant.takeover,
                         15,
                         1)
                     }}
@@ -176,9 +178,8 @@ function MyMap(props) {
         <Loader
           type="Rings"
           color="#7BA47F"
-          height={60}
-          width={60}
-          timeout={3000} //3 secs
+          height={100}
+          width={100}
           className="Loading"
         />
       </div>

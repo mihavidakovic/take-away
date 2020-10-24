@@ -36,8 +36,8 @@ export default function List(props) {
 
     if (data) {
 
-        function handleSelectRestaurant(id, title, description, image, tel, lon, lat, zoom, visible) {
-            changeSelectedRestaurant(id, title, description, image, tel, lon, lat, zoom, visible)
+        function handleSelectRestaurant(id, title, description, image, tel, lon, lat, delivery, takeaway, zoom, visible) {
+            changeSelectedRestaurant(id, title, description, image, tel, lon, lat, delivery, takeaway, zoom, visible)
         }
 
         let items = data
@@ -64,15 +64,13 @@ export default function List(props) {
                                 data.tel,
                                 data.lon,
                                 data.lat,
-                                15,
+                                data.delivery,
+                                data.takeaway,
+                                17,
                                 1
                             )}>
                         <ListItem
-                            title={data.title}
-                            description={data.description}
-                            image={data.image}
-                            lat={data.lat}
-                            lon={data.lon}
+                            data={data}
                             location={location}
                         />
                     </div>
@@ -96,7 +94,6 @@ export default function List(props) {
                     color="#7BA47F"
                     height={60}
                     width={60}
-                    timeout={3000} //3 secs
                     className="Loading"
                 />
             </div>
