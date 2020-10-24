@@ -1,4 +1,5 @@
 .Form {
+    margin-bottom: $global-margin;
 
     .Form__control {
         display: flex;
@@ -14,12 +15,62 @@
                 color: red;
             }
         }
+
+        .Form__search {
+            width: 100%;
+            position: relative;
+            
+            input {
+                width: 100%;
+            }
+
+            .autocomplete-dropdown-container {
+                position: absolute;
+                width: 100%;
+                top: 100%;
+                bottom: 0;
+                height: auto;
+
+                .loading {
+                    position: absolute;
+                    width: 100%;
+                    text-align: center;
+                    padding: 1rem 0;
+                }
+
+                .suggestion-item {
+                    background-color: #fff;
+                    padding: 0.5rem 0.5rem;
+                    cursor: pointer;
+                    font-size: 0.9rem;
+                    transition: $global-transition;
+                    border-left: 1px solid rgba(#000, 0.1);
+                    border-right: 1px solid rgba(#000, 0.1);
+
+                    &:last-of-type{
+                        border-bottom: 1px solid rgba(#000, 0.1);
+                    }
+
+                    &:hover {
+                        background-color: #f0f0f0;
+                    }
+                }
+            }
+        }
     }
 
     .Form__footer {
         display: flex;
         flex-flow: row;
-        align-items: flex-start;
+        align-items: center;
         justify-content: left;
+
+        .btn {
+            margin-right: $global-margin;
+        }
+
+        .message {
+            width: 100%;
+        }
     }
 }

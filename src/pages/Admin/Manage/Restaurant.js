@@ -3,13 +3,14 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/sl'
 import {
-    Link
+    useHistory
 } from "react-router-dom";
 
 
 export default function Restaurant(props) {
-
+    let history = useHistory();
     const [restaurantStatus, setRestaurantStatus] = useState();
+    const [visible, setVisible] = useState(true);
 
     useEffect(() => {
         setRestaurantStatus(props.data.visible)
@@ -48,10 +49,28 @@ export default function Restaurant(props) {
                 }
             )
     }
+
+    function deleteRestaurant(id) {
+        const url = "https://take-away-si.herokuapp.com/restaurants/" + id;
+        fetch(url, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setVisible(false)
+                    console.log(result)
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+
     dayjs.extend(relativeTime)
     dayjs.locale('sl')
     return (
-        <div className="restaurant">
+        <div className={visible ? "restaurant" : "restaurant deleted"}>
             <div
                 className="restaurant__image"
                 style={{ "backgroundImage": "url(" + props.data.image + ")" }}>
@@ -77,9 +96,19 @@ export default function Restaurant(props) {
                         }}
                     >Objavi</div>
                 }
-                <Link to={"/administracija/urejanje/" + props.data._id} className="btn btn-primary">
+                <div
+                    className="btn btn-primary"
+                    onClick={() => {
+                        history.push("/administracija/urejanje/" + props.data._id)
+                    }}>
                     Uredi
-                </Link>
+                </div>
+                <div
+                    className="btn btn-danger"
+                    onClick={() => {
+                        deleteRestaurant(props.data._id)
+                    }}
+                >Izbriši</div>
             </div>
         </div>
     )

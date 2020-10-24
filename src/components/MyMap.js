@@ -3,7 +3,8 @@ import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext
 import { GoogleMap, useLoadScript, MarkerClusterer, Marker } from '@react-google-maps/api';
 import Loader from 'react-loader-spinner'
 import marker from "../assets/img/marker.svg";
-
+import m1 from "../assets/img/m1.png";
+import m2 from "../assets/img/m2.png";
 
 
 function MyMap(props) {
@@ -16,10 +17,56 @@ function MyMap(props) {
   };
 
 
-  const options = {
-    imagePath:
-      'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
-  }
+  const clusterImages = [
+    {
+      url: m1,
+      height: 62,
+      width: 62,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      fontSize: 18
+    },
+    {
+      url: m1,
+      height: 62,
+      width: 62,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      fontSize: 18
+    },
+    {
+      url: m1,
+      height: 62,
+      width: 62,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      fontSize: 18
+    },
+    {
+      url: m2,
+      height: 50,
+      width: 50,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      fontSize: 18
+    },
+    {
+      url: m2,
+      height: 50,
+      width: 50,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      fontSize: 18
+    },
+    {
+      url: m2,
+      height: 50,
+      width: 50,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      textSize: 18
+    }
+  ]
 
   function createKey(location) {
     return parseFloat(location.lat) + parseFloat(location.lon)
@@ -28,6 +75,7 @@ function MyMap(props) {
   useEffect(() => {
     setRestaurants(props.data)
   }, [props.data, SelectedRestaurant])
+  
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GMAP_API,
     mapId: "ea6d22f5e288638"
@@ -77,7 +125,7 @@ function MyMap(props) {
   ];
 
   const map = () => {
-    
+
   }
 
   if (restaurants) {
@@ -88,7 +136,7 @@ function MyMap(props) {
           zoom={position.zoom}
           center={{ lat: position.lat, lng: position.lng }}
           options={{ styles: exampleMapStyles }}>
-          <MarkerClusterer options={options}>
+          <MarkerClusterer styles={clusterImages}>
             {(clusterer) =>
               restaurants.map((restaurant) => {
                 return (
