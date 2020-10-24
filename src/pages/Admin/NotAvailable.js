@@ -9,7 +9,6 @@ export default function NotAvailable() {
                 color="#7BA47F"
                 height={60}
                 width={60}
-                timeout={3000} //3 secs
                 className="Loading"
             />
         </div>
