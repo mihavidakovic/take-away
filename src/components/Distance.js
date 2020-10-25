@@ -16,7 +16,9 @@ function Distance(props) {
       function deg2rad(deg) {
         return deg * (Math.PI / 180)
       }
-        if(props.restaurantLocation.lat.length > 0 && props.restaurantLocation.lon.length > 0) {
+
+      console.log(props.location.lat)
+        if(props.restaurantLocation.lat && props.restaurantLocation.lon && props.location.lat && props.location.lat) {
 
                   return (
             <>

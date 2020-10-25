@@ -81,6 +81,44 @@ export default function List(props) {
         return (
             <div className="List">
                 <Search value={searchValue} onChange={handleSearch} />
+                <div className="Regions">
+                    <div className="Region selected">
+                        <span>Vse regije</span>
+                    </div>
+                    <div className="Region">
+                        <span>Pomurska regija</span>
+                    </div>
+                    <div className="Region">
+                        <span>Koroška regija</span>
+                    </div>
+                    <div className="Region">
+                        <span>Savinjska regija</span>
+                    </div>
+                    <div className="Region">
+                        <span>Zasavska regija</span>
+                    </div>
+                    <div className="Region">
+                        <span>Posavska regija</span>
+                    </div>
+                    <div className="Region">
+                        <span>Jugovzhodna Slovenija</span>
+                    </div>
+                    <div className="Region">
+                        <span>Osrednjeslovenska regija</span>
+                    </div>
+                    <div className="Region">
+                        <span>Gorenjska regija</span>
+                    </div>
+                    <div className="Region">
+                        <span>Primorsko-notranjska regija</span>
+                    </div>
+                    <div className="Region">
+                        <span>Goriška regija</span>
+                    </div>
+                    <div className="Region">
+                        <span>Obalno-kraška regija</span>
+                    </div>
+                </div>
                 <div className="List__container">
                     {items}
                 </div>

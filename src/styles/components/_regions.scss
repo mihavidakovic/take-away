@@ -1,0 +1,35 @@
+.Regions {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: no-wrap;
+    overflow-y: auto;
+    padding: $global-padding / 2;
+
+    .Region {
+        flex: 1;
+        white-space: nowrap;
+        padding: 0.5rem 1rem;
+        background-color: $primary-color;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 500;
+        border-radius: 6px;
+        opacity: 0.8;
+        cursor: pointer;
+        transition: $global-transition;
+
+        &:not(:last-of-type) {
+            margin-right: $global-margin / 2;
+        }
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        &.selected {
+            font-weight: bold;
+            opacity: 1;
+        }
+    }
+}
