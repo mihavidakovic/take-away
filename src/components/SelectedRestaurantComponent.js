@@ -39,7 +39,7 @@ function SelectedRestaurant() {
                         <span className="SelectedRestaurant__info--description">{data.description}</span>
 
                     </div>
-                    <a href="tel:0404040" className="info__right">
+                    <a href={"tel:" + data.tel } className="info__right">
                         <FaPhoneVolume />
                         <span className="SelectedRestaurant__info--tel">{data.tel}</span>
                     </a>

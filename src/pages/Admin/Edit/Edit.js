@@ -7,6 +7,7 @@ import Loader from 'react-loader-spinner'
 export default function Edit() {
     let { id } = useParams();
     const [data, setData] = useState()
+    const [regions, setRegions] = useState();
 
     //inputs
     const [title, setTitle] = useState();
@@ -17,6 +18,7 @@ export default function Edit() {
     const [lat, setLat] = useState();
     const [takeaway, setTakeaway] = useState();
     const [delivery, setDelivery] = useState();
+    const [region, setRegion] = useState();
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -35,7 +37,8 @@ export default function Edit() {
                 "lon": lon,
                 "lat": lat,
                 "takeaway": takeaway,
-                "delivery": delivery    
+                "delivery": delivery, 
+                "region_id": region    
             })
         })
             .then(res => res.json())
@@ -64,6 +67,22 @@ export default function Edit() {
                     setLat(result.lat)
                     setTakeaway(result.takeaway)
                     setDelivery(result.delivery)
+                    setRegion(result.region_id)
+                },
+                (error) => {
+                    console.log(error)
+                }
+            )
+    }
+
+    function getRegions() {
+        let url = "https://take-away-si.herokuapp.com/regions";
+        fetch(url)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    setRegions(result)
+                    console.log(result)
                 },
                 (error) => {
                     console.log(error)
@@ -74,11 +93,13 @@ export default function Edit() {
     useEffect(() => {
         
         getData(id)
+        getRegions()
 
     }, [id])
 
 
-    if (data && id) {
+    console.log(region)
+    if (data && id && regions) {
         return (
             <div className="subpage Edit">
                 <div className="container">
@@ -107,6 +128,16 @@ export default function Edit() {
                         <div className="Form__control">
                             <label htmlFor="title">Lon: (<span>*</span>)</label>
                             <input className="input" type="text" placeholder="2.12461354" value={lon} onChange={e => setLon(e.target.value)} />
+                        </div>
+                        <div className="Form__control">
+                            <label htmlFor="title">Regija: (<span>*</span>)</label>
+                            <select className="input" onChange={e => setRegion(e.target.value)} value={region}>
+                                {regions.map((region, i) => {
+                                    return(
+                                        <option key={i} value={region._id} selected={region._id == region}>{region.name}</option>
+                                    )
+                                })}
+                            </select>
                         </div>
                         <div className="Form__control">
                             <label htmlFor="title">Dostava: (<span>*</span>)</label>

@@ -3,20 +3,26 @@ import { Search } from './Search';
 import ListItem from './ListItem';
 import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
 import Loader from 'react-loader-spinner'
+import { FaSearch } from 'react-icons/fa';
 
+import Regions from "./Regions"
+import { initial, rest } from 'lodash';
 export default function List(props) {
 
     const [searchValue, setSearchValue] = useState("");
-    const [data, setData] = useState([]);
+    const [data, setData] = useState();
+    const [filteredData, setFilteredData] = useState();
     const [location, setLocation] = useState({
         lat: null,
         lon: null
     })
+    const [selectedRegion, setSelectedRegion] = useState("all")
 
     const { changeSelectedRestaurant } = useContext(SelectedRestaurantContext)
 
     useEffect(() => {
         setData(props.data)
+        setFilteredData(props.data)
         getLocation()
     }, [props.data])
 
@@ -30,59 +36,92 @@ export default function List(props) {
         }
     }
 
-    function handleSearch(e) {
-        setSearchValue(e)
+
+    function handleChangeRegion(id) {
+        const oldData = data;
+        setFilteredData(oldData)
+        setSelectedRegion(id)
+
+        let newData = []
+
+        if(id === "all") {
+            console.log(id)
+            setFilteredData(oldData)
+        } else {
+            newData = filteredData.filter(restaurant => {
+                if(restaurant.region_id === id) {
+                    return restaurant
+                } else {
+                    setFilteredData(oldData)
+                }
+            })
+
+            setFilteredData(newData)
+            console.log(filteredData)
+        }
+    }
+    function handleValueChange(e) {
+        setSearchValue(e.target.value)
+        console.log(searchValue)
     }
 
-    if (data) {
+    function handleSearch(e) {
+        let oldList = data
+
+        if(e !== "") {
+            let newList = [];
+            console.log(e.toLowerCase())
+            newList = oldList.filter(restaurant => {
+                return restaurant.title.toLowerCase().includes(e.toLowerCase()) || restaurant.description.toLowerCase().includes(e.toLowerCase());
+            })
+            console.log(oldList)
+            console.log(newList)
+            setFilteredData(newList)
+        } else {
+            setFilteredData(data)
+        }
+
+    }
+
+    if (filteredData) {
 
         function handleSelectRestaurant(id, title, description, image, tel, lon, lat, delivery, takeaway, zoom, visible) {
             changeSelectedRestaurant(id, title, description, image, tel, lon, lat, delivery, takeaway, zoom, visible)
         }
-
-        let items = data
-            .filter(data => {
-                if (searchValue === null) {
-                    return data;
-                } else if (data.title.toLowerCase().includes(searchValue.toLowerCase()) || data.description.toLowerCase().includes(searchValue.toLowerCase())) {
-                    return data;
-                }
-
-                return null
-            })
-            .map((data, i) => {
-                return (
-                    <div
-                        key={i}
-                        className="List__item"
-                        onClick={() =>
-                            handleSelectRestaurant(
-                                data._id,
-                                data.title,
-                                data.description,
-                                data.image,
-                                data.tel,
-                                data.lon,
-                                data.lat,
-                                data.delivery,
-                                data.takeaway,
-                                17,
-                                1
-                            )}>
-                        <ListItem
-                            data={data}
-                            location={location}
-                        />
-                    </div>
-                )
-            }
-            );
-
+            
         return (
             <div className="List">
-                <Search value={searchValue} onChange={handleSearch} />
+                <div className="Search">
+                    <FaSearch className="Search__icon" />
+                    <input type="text" placeholder="Išči" onChange={(e) => 
+                        handleSearch(e.target.value)
+                    } />
+                </div>
                 <div className="List__container">
-                    {items}
+                    {filteredData.map((result, i) => (
+                        <div
+                            key={i}
+                            className={"List__item " + result.region_id}
+                            onClick={() =>
+                                handleSelectRestaurant(
+                                    result._id,
+                                    result.title,
+                                    result.description,
+                                    result.image,
+                                    result.tel,
+                                    result.lon,
+                                    result.lat,
+                                    result.delivery,
+                                    result.takeaway,
+                                    17,
+                                    1
+                                )}>
+                            <ListItem
+                                data={searchValue.length > 0 ? filteredData : result}
+                                location={location}
+                            />
+                        </div>
+                    ))}
                 </div>
             </div>
         );
