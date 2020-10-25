@@ -1,139 +1,187 @@
-import React, { useState, useRef, useContext } from "react";
-import useSwr from "swr";
-import GoogleMapReact from "google-map-react";
-import useSupercluster from "use-supercluster";
-import {SelectedRestaurantContext} from '../contexts/SelectedRestaurantContext';
+import React, { useState, useContext, useEffect } from "react";
+import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
+import { GoogleMap, useLoadScript, MarkerClusterer, Marker } from '@react-google-maps/api';
+import Loader from 'react-loader-spinner'
+import marker from "../assets/img/marker.svg";
+import m1 from "../assets/img/m1.png";
+import m2 from "../assets/img/m2.png";
 
-const fetcher = (...args) => fetch(...args).then(response => response.json());
 
-const Marker = ({ children }) => children;
+function MyMap(props) {
+  const { SelectedRestaurant, changeSelectedRestaurant } = useContext(SelectedRestaurantContext)
+  const [restaurants, setRestaurants] = useState();
+  let position = {
+    lat: parseFloat(SelectedRestaurant.lon),
+    lng: parseFloat(SelectedRestaurant.lat),
+    zoom: SelectedRestaurant.zoom
+  };
 
-export default function MyMap(props) {
-  const mapRef = useRef();
-  const [bounds, setBounds] = useState(null);
-  const [zoom, setZoom] = useState(10);
-  const [position, setPosition] = useState({ lat: 46.0845131, lng: 14.8499052 })
-  const {SelectedRestaurant, changeSelectedRestaurant} = useContext(SelectedRestaurantContext)
 
-  const url =
-    "https://take-away-si.herokuapp.com/restaurants";
-  const { data, error } = useSwr(url, { fetcher });
-  const restaurants = data && !error ? data.slice(0, 2000) : [];
-  const points = restaurants.map(restaurant => ({
-    type: "Feature",
-    properties: { 
-      cluster: false, 
-      restaurantName: restaurant.title, 
-      restaurantId: restaurant._id, 
-      category: restaurant.description,
-      data: restaurant
+  const clusterImages = [
+    {
+      url: m1,
+      height: 62,
+      width: 62,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      fontSize: 18
     },
-    geometry: {
-      type: "Point",
-      coordinates: [
-        parseFloat(restaurant.lat),
-        parseFloat(restaurant.lon)
-      ]
+    {
+      url: m1,
+      height: 62,
+      width: 62,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      fontSize: 18
+    },
+    {
+      url: m1,
+      height: 62,
+      width: 62,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      fontSize: 18
+    },
+    {
+      url: m2,
+      height: 50,
+      width: 50,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      fontSize: 18
+    },
+    {
+      url: m2,
+      height: 50,
+      width: 50,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      fontSize: 18
+    },
+    {
+      url: m2,
+      height: 50,
+      width: 50,
+      fontFamily: "Inter",
+      textColor: "#FFF",
+      textSize: 18
     }
-  }));
+  ]
 
-  const { clusters, supercluster } = useSupercluster({
-    points,
-    bounds,
-    zoom,
-    options: { radius: 75, maxZoom: 20 }
-  });
-  function handleSelectRestaurant(id, title, description, image, tel, lon, lat, zoom, visible) {
-    changeSelectedRestaurant(id, title, description, image, tel, lon, lat, zoom, visible)
-    console.log("opa")
+  function createKey(location) {
+    return parseFloat(location.lat) + parseFloat(location.lon)
   }
 
-  return (
-    <div className="Map">
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_GMAP_API }}
-        center={position || { lat: 46.1437671, lng: 13.8719048 }}
-        defaultZoom={8.3}
-        yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map }) => {
-          mapRef.current = map;
-        }}
-        onChange={({ zoom, bounds }) => {
-          setZoom(zoom);
-          setBounds([
-            bounds.nw.lng,
-            bounds.se.lat,
-            bounds.se.lng,
-            bounds.nw.lat
-          ]);
-        }}
-      >
-        {clusters.map(cluster => {
-          const [longitude, latitude] = cluster.geometry.coordinates;
-          const {
-            cluster: isCluster,
-            point_count: pointCount
-          } = cluster.properties;
+  useEffect(() => {
+    setRestaurants(props.data)
+  }, [props.data, SelectedRestaurant])
+  
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GMAP_API,
+    mapId: "ea6d22f5e288638"
+  })
 
-          if (isCluster) {
-            return (
-              <Marker
-                key={`cluster-${cluster.id}`}
-                lat={latitude}
-                lng={longitude}
-              >
-                <div
-                  className="cluster-marker"
-                  style={{
-                    width: `${10 + (pointCount / points.length) * 20}px`,
-                    height: `${10 + (pointCount / points.length) * 20}px`
-                  }}
-                  onClick={() => {
-                    const expansionZoom = Math.min(
-                      supercluster.getClusterExpansionZoom(cluster.id),
-                      20
-                    );
-                    mapRef.current.setZoom(expansionZoom);
-                    mapRef.current.panTo({ lat: latitude, lng: longitude });
-                  }}
-                >
-                  {pointCount}
-                </div>
-              </Marker>
-            );
-          }
+  const exampleMapStyles = [
+    {
+      "featureType": "poi",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.attraction",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.business",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "stylers": [
+        {
+          "visibility": "on"
+        }
+      ]
+    }
+  ];
 
-        return (
-              <Marker
-              key={`restaurant-${cluster.properties.restaurantId}`}
-              lat={latitude}
-              lng={longitude}
-        >
-              <div 
-                className="Map__marker"
-                onClick={() => {
-                  setPosition({ lat: latitude, lng: longitude })
-                  mapRef.current.setZoom(17)
-                  handleSelectRestaurant(
-                    cluster.properties.data._id,
-                    cluster.properties.data.title,
-                    cluster.properties.data.description,
-                    cluster.properties.data.image,
-                    cluster.properties.data.tel,
-                    cluster.properties.data.lon,
-                    cluster.properties.data.lat,
-                    3,
-                    1
-                  )
-                }}        
-              >
-                <span>{cluster.properties.restaurantName}</span>
-              </div>
-            </Marker>
-          );
-        })}
-      </GoogleMapReact>
-    </div>
-  );
+  if (restaurants) {
+    return (
+      <div className="Map">
+        <GoogleMap
+          id='map'
+          zoom={position.zoom}
+          center={{ lat: position.lat, lng: position.lng }}
+          options={{ styles: exampleMapStyles }}>
+          <MarkerClusterer styles={clusterImages}>
+            {(clusterer) =>
+              restaurants.map((restaurant) => {
+                return (
+                  <Marker
+                    key={createKey(restaurant)}
+                    position={{
+                      lat: parseFloat(restaurant.lon),
+                      lng: parseFloat(restaurant.lat)
+                    }}
+                    cursor="pointer"
+                    icon={marker}
+                    clusterer={clusterer}
+                    onClick={() => {
+                      changeSelectedRestaurant(
+                        restaurant._id,
+                        restaurant.title,
+                        restaurant.description,
+                        restaurant.image,
+                        restaurant.tel,
+                        restaurant.lon,
+                        restaurant.lat,
+                        restaurant.delivery,
+                        restaurant.takeover,
+                        15,
+                        1)
+                    }}
+                  />
+
+                )
+              })
+            }
+          </MarkerClusterer>
+        </GoogleMap>
+      </div>
+    );
+  } else {
+    return (
+      <div className="Map">
+        <Loader
+          type="Rings"
+          color="#7BA47F"
+          height={100}
+          width={100}
+          className="Loading"
+        />
+      </div>
+    )
+  }
 
 }
+
+export default React.memo(MyMap)

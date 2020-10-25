@@ -1,11 +1,13 @@
 // Fonts
-// @import "https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&display=swap";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&display=swap");
 
 // Abstracts
 @import "abstracts/mixins.scss";
 @import "abstracts/functions.scss";
 @import "abstracts/variables.scss";
 @import "abstracts/base.scss";
+@import "abstracts/typography.scss";
+@import "abstracts/animations.scss";
 
 // Components
 @import "components/container.scss";
@@ -18,8 +20,13 @@
 @import "components/list.scss";
 @import "components/search.scss";
 @import "components/selected-restaurant.scss";
+@import "components/form.scss";
 
 @import "components/soon.scss";
 
 // Pages
 @import "pages/index.scss";
+@import "pages/add.scss";
+@import "pages/admin.scss";
+@import "pages/manage.scss";
+@import "pages/edit.scss";

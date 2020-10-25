@@ -1,24 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
 import { FaArrowLeft, FaCheck, FaTimes, FaPhoneVolume } from 'react-icons/fa';
-import { motion } from "framer-motion"
-
-const list = {
-    hidden: { 
-        opacity: 0,
-        y: 10,
-        transition: {
-            duration: 0.2
-        }
-    }, 
-    visible: { 
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.2
-        }
-    }
-}
 
 function SelectedRestaurant() {
     const { SelectedRestaurant, changeSelectedRestaurant } = useContext(SelectedRestaurantContext)
@@ -26,11 +8,23 @@ function SelectedRestaurant() {
     if (SelectedRestaurant.visible === 1) {
         let data = SelectedRestaurant;
         function goBack() {
-            changeSelectedRestaurant({ visible: 0 })
+            changeSelectedRestaurant(
+                null, 
+                null, 
+                null,
+                null,
+                null, 
+                null, 
+                null,
+                false,
+                false,
+                8, 
+                0
+            )
         }
 
         return (
-            <motion.div className="SelectedRestaurant" initial="hidden" animate="visible" variants={list}>
+            <div className="SelectedRestaurant">
                 <div className="SelectedRestaurant__image" style={{
                     'backgroundImage': 'url(' + data.image + ')'
                 }}>
@@ -51,16 +45,32 @@ function SelectedRestaurant() {
                     </a>
                 </div>
                 <div className="SelectedRestaurant__available">
-                <div className="available__delivery unavailable">
-                        <FaTimes />
+                    <div className={data.delivery ? "available__takeaway available" : "available__takeaway"}>
+                        {
+                            data.delivery ? (
+                                <FaCheck />
+                            )
+                            :
+                            (
+                                <FaTimes />
+                            )
+                        }
                         <span>Dostava</span>
                     </div>
-                    <div className="available__takeaway available">
-                        <FaCheck />
+                    <div className={data.takeaway ? "available__delivery available" : "available__delivery"}>
+                        {
+                            data.takeaway ? (
+                                <FaCheck />
+                            )
+                            :
+                            (
+                                <FaTimes />
+                            )
+                        }
                         <span>Osebni prevzem</span>
                     </div>
                 </div>
-            </motion.div>
+            </div>
         )
 
     } else {

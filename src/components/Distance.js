@@ -1,6 +1,4 @@
 import React from 'react'
-import GoogleMapReact from "google-map-react";
-
 
 function Distance(props) {      
     function _getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
@@ -18,7 +16,7 @@ function Distance(props) {
       function deg2rad(deg) {
         return deg * (Math.PI / 180)
       }
-        if(props.location.lat > 0 && props.location.lon > 0) {
+        if(props.restaurantLocation.lat.length > 0 && props.restaurantLocation.lon.length > 0) {
 
                   return (
             <>

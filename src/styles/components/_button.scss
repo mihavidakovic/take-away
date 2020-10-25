@@ -1,20 +1,39 @@
 .btn {
-	padding: $global-padding / 1.5 $global-padding * 2;
+	padding: $global-padding / 1.6 $global-padding * 1.5;
 	color: #FFF;
 	font-weight: bold;
 	text-transform: uppercase;
-	font-size: 0.8rem;
-	border-radius: 3px;
+	font-size: 0.7rem;
+	border-radius: 6px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 6px;
+	transition: $global-transition;
+	user-select: none;
+	outline: none;
+	border: none;
 
 	&.btn-primary {
 		background-color: $primary-color;
 		
 		&:hover {
 			background-color: darken($primary-color, 5%);
+			box-shadow: 
+				0 3px 6px 0 rgba($primary-color, 0.05),
+				0 6px 15px 0 rgba($primary-color, 0.1);
+		}
+	}
+
+	&.btn-danger {
+		background-color: rgb(220, 38, 38);
+		
+		&:hover {
+			background-color: darken(rgb(220, 38, 38), 5%);
+			box-shadow: 
+				0 3px 6px 0 rgba(rgb(220, 38, 38), 0.05),
+				0 6px 15px 0 rgba(rgb(220, 38, 38), 0.1);
 		}
 	}
 }

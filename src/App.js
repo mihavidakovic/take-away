@@ -1,71 +1,40 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 import './styles/styles.scss';
 
+import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
+
 import Header from "./components/Header.js";
-import MyMap from "./components/MyMap.js";
-import List from "./components/List.js";
-import SelectedRestaurant from "./components/SelectedRestaurant.js";
-import Soon from "./components/Soon.js";
 
-import SelectedRestaurantProvider from './contexts/SelectedRestaurantContext';
-
-import { motion } from "framer-motion"
-
-const sidebar = {
-    hidden: { 
-        opacity: 0,
-        y: 10,
-        transition: {
-            duration: 0.2
-        }
-    }, 
-    visible: { 
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.2
-        }
-    }
-}
+import Home from "./pages/Home.js";
+import Add from "./pages/Add.js";
+import Admin from "./pages/Admin/Admin.js";
+import Manage from "./pages/Admin/Manage/Manage.js";
+import Edit from "./pages/Admin/Edit/Edit.js";
 
 function App() {
 
-  const [data, setData] = useState();
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-
-  useEffect(() => {
-    fetch("https://take-away-si.herokuapp.com/restaurants")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setData(result)
-        },
-
-        (error) => {
-          console.log(error)
-        }
-      )
-  }, [])
-
   return (
-      <>
-        <Soon />
-      </>
-      // <div className="App">
-      //   <Header />
-      //   <main>
-      //   <SelectedRestaurantProvider>
-      //     <MyMap />
-      //     <div className="Toggle" onClick={() => setIsSidebarVisible(!isSidebarVisible)}>
-      //       <span>{isSidebarVisible ? "Pokaži zemljevid" : "Prikaži vse restavracije"}</span>
-      //     </div>
-      //     <motion.div className={isSidebarVisible ? "Sidebar visible" : "Sidebar"} initial="hidden" animate="visible" variants={sidebar}>
-      //         <SelectedRestaurant />
-      //         <List data={data} />
-      //     </motion.div>
-      //     </SelectedRestaurantProvider>
-      //   </main>
-      // </div>
+    <Router>
+      <Auth0ProviderWithHistory>
+        <div className="App">
+          <Header />
+          <main>
+            <Switch>
+              <Route exact path="/" children={<Home />} />
+              <Route path="/dodaj" children={<Add />} />
+              <Route exact path="/administracija" children={<Admin />} />
+              <Route exact path="/administracija/urejanje" children={<Manage />} />
+              <Route exact path="/administracija/urejanje/:id" children={<Edit />} />
+            </Switch>
+          </main>
+        </div>
+      </Auth0ProviderWithHistory>
+    </Router>
   );
 }
 

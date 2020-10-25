@@ -1,24 +1,25 @@
-main {
+.Home {
     display: flex;
     flex-flow: column;
     align-items: stretch;
+    position: relative;
 
     @include breakpoint(md) {
-        flex-flow: row
+        flex-flow: row;
     }
 
     @include breakpoint(xl) {
-        flex-flow: row
+        flex-flow: row;
     }
 
     .Toggle {
         position: absolute;
-        bottom: 0.5rem;
+        bottom: $global-margin * 5;
         left: 50%;
         transform: translateX(-50%);
         z-index: 10;
         background-color: $primary-color;
-        padding: 0.6rem 1.5rem;
+        padding: 0.8rem 2.5rem;
         border-radius: 100px;
         font-size: 0.8rem;
         color: #fff;
@@ -47,21 +48,21 @@ main {
     }
 
     .Map {
-        height: calc(100vh - 3.5rem);
+        height: 100%;
         width: 100vw;
-        margin-top: 3.5rem;
 
         @include breakpoint(md) {
-            height: calc(100vh - 5rem);
             width: 70vw;
-            margin-top: 5rem;
+        }
+
+        @include breakpoint(lg) {
+            width: 70vw;
         }
     }
 
     .Sidebar {
         width: 100vw;
-        height: calc(100vh - 3.5rem);
-        margin-top: 3.5rem;
+        height: 100%;
         overflow-y: hidden;
         position: absolute;
         top: 0;
@@ -75,14 +76,19 @@ main {
 
         @include breakpoint(md) {
             width: 30vw;
-            height: calc(100vh - 5rem);
             position: relative;
-            margin-top: 5rem;
+            overflow-y: hidden;
+            display: inline;
+        }
+    
+        @include breakpoint(lg) {
+            width: 30vw;
+            position: relative;
             overflow-y: hidden;
             display: inline;
         }
 
-        &.visible {
+            &.visible {
             display: inline;
         }
     }

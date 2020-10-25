@@ -1,5 +1,5 @@
 .header {
-	background: rgba(255,255,255, 0.6);
+	background: rgba(255,255,255, 0.75);
 	position: fixed;
 	width: 100%;
 	height: 3.5rem;
@@ -9,6 +9,7 @@
 	box-shadow: 
 		0 3px 6px 0 rgba(#000, 0.05),
 		0 0px 15px 0 rgba(#000, 0.07);
+	backdrop-filter: blur(12px);
 
 	@include breakpoint(md) {
 		height: 5rem;
@@ -29,29 +30,19 @@
 			cursor: pointer;
 
 			.logo__box {
-				background-color: $primary-color;
+				margin-right: 0.5rem;
 				width: 2.5rem;
 				height: 2.5rem;
-				cursor: pointer;
-				-webkit-user-select: none;
-				   -moz-user-select: none;
-					-ms-user-select: none;
-						user-select: none;
-				display: flex;
-				flex-flow: row;
-				align-items: center;
-				padding: 0.5rem;
-				border-radius: 0.5rem;
-				margin-right: 0.8rem;
 
 				@include breakpoint(md) {
 					width: 3.5rem;
-					height: 3.5rem;
-					padding: 0.8rem;
+					height: 3.5rem;	
+					margin-right: 0.9rem;
 				}
 			
 				img {
 					width: 100%;
+					height: 100%;
 				}
 			}
 			
@@ -61,9 +52,14 @@
 
 				.logo__name {
 					font-weight: 900;
-					text-transform: uppercase;
-					font-size: 1rem;
+					font-size: 0.9rem;
 					color: $primary-color;
+					margin: 0;
+					padding: 0;
+
+					&:after {
+						display: none;
+					}
 
 					@include breakpoint(md) {
 						font-size: 1.2rem;
@@ -71,9 +67,20 @@
 				}
 
 				.logo__subname {
-					font-size: 0.75rem;
+					font-size: 0.65rem;
 					color: rgba(#000, 0.6);
+					font-weight: 400;
 					margin-left: 0.1rem;
+					margin: 0;
+					padding: 0;
+
+					@include breakpoint(md) {
+						font-size: 0.75rem;
+					}
+
+					&:after {
+						display: none;
+					}
 				}
 			}
 		}
@@ -83,14 +90,19 @@
 			flex-flow: row;
 			align-items: center;
 			
-			span {
-				color: rgba($primary-color, 0.8);
+			.nav__item {
+				display: block;
 				cursor: pointer;
 				font-size: rem(12);
 				font-weight: 800;
 				text-transform: uppercase;
 				text-decoration: none;
-				
+				color: rgba($primary-color, 0.8);
+
+				&:not(:last-of-type) {
+					margin-right: rem(18);
+				}
+
 				&:hover {
 					color: $primary-color;
 				}
@@ -99,11 +111,15 @@
 					font-weight: 900;
 					color: $primary-color;
 				}
-				
-				&:not(:last-child) {
-					margin-right: rem(18);
+
+				.nav__item--hidden {
+					display: none;
+
+					@include breakpoint(md) {
+						display: inline;
+					}
 				}
-			}
+			}					
 		}
 	}
 }

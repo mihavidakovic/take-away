@@ -5,8 +5,8 @@ export const SelectedRestaurantContext = createContext();
 const SelectedRestaurantProvider = (props) => {
     const [SelectedRestaurant, setSelectedRestaurant] = useState({lon: 46.246993, lat: 14.3651411, zoom: 8, visible: 0});
 
-    const changeSelectedRestaurant = (id, title, description, image, tel, lon, lat, zoom, visible) => {
-        setSelectedRestaurant({id: id, title: title, description: description, image: image, tel: tel, lon: lon, lat: lat, zooom: 3, visible: visible})
+    const changeSelectedRestaurant = (id, title, description, image, tel, lon, lat, delivery, takeaway, zoom, visible) => {
+        setSelectedRestaurant({id: id, title: title, description: description, image: image, tel: tel, lon: lon, lat: lat, delivery: delivery, takeaway: takeaway, zoom: zoom, visible: visible})
     }
 
     return (

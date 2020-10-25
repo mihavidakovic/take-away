@@ -8,16 +8,46 @@ body {
 html {
 	box-sizing: border-box;
 }
+
 *, *:before, *:after {
 	box-sizing: inherit;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+a {
+	text-decoration: none;
+}
+
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+
+.App {
+	display: flex;
+	flex-flow: column;
 }
 
 .subpage {
-	margin-top: calc(8vh + 1rem);
+    height: calc(100vh - 3.5rem);
+    width: 100vw;
+	margin-top: 3.5rem;
 	
-	@include breakpoint(md) {
-		margin-top: calc(15vh + 1rem);
-	}
+    @include breakpoint(md) {
+        height: calc(100vh - 5rem);
+        margin-top: 5rem;
+        flex-flow: row;
+    }
+
+    @include breakpoint(xl) {
+        height: calc(100vh - 5rem);
+        margin-top: 5rem;
+        flex-flow: row;
+    }
 }
 
 .loading__spinner {
@@ -25,4 +55,16 @@ html {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+main {
+	min-height: calc(100vh - 3.5rem);
+
+    @include breakpoint(md) {
+		height: calc(100vh - 5rem);
+    }
+
+    @include breakpoint(xl) {
+		height: calc(100vh - 5rem);
+    }
 }

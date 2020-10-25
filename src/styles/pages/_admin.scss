@@ -1,0 +1,56 @@
+.Admin {
+    padding-top: $global-padding;
+
+    .Admin__head {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .Admin__actions {
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+
+        .action {
+            width: calc(50% - 0.5rem);
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+            background-color: rgba($primary-color, 0.9);
+            border-radius: 6px;
+            transition: $global-transition;
+            user-select: none;
+            color: #fff;
+            margin-bottom: $global-margin;
+
+            &:hover {
+                cursor: pointer;
+                background-color: rgba($primary-color, 1);
+                box-shadow: 
+                    0 3px 6px 0 rgba($primary-color, 0.1),
+                    0 6px 16px 0 rgba($primary-color, 0.2);
+            }
+
+            &:nth-child(odd) {
+                margin-right: 0.5rem;
+            }
+
+            &:nth-child(even) {
+                margin-left: 0.5rem;
+            }
+
+            svg {
+                font-size: 2rem;
+                margin-bottom: $global-margin / 2;
+            }
+
+            span {
+                font-size: 0.9rem;
+            }
+        }
+    }
+}

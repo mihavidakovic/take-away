@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Search } from './Search';
 import ListItem from './ListItem';
 import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
-import { usePosition } from 'use-position';
+import Loader from 'react-loader-spinner'
 
 export default function List(props) {
 
@@ -13,7 +13,7 @@ export default function List(props) {
         lon: null
     })
 
-    const { SelectedRestaurant, changeSelectedRestaurant } = useContext(SelectedRestaurantContext)
+    const { changeSelectedRestaurant } = useContext(SelectedRestaurantContext)
 
     useEffect(() => {
         setData(props.data)
@@ -36,8 +36,8 @@ export default function List(props) {
 
     if (data) {
 
-        function handleSelectRestaurant(id, title, description, image, tel, lon, lat, zoom, visible) {
-            changeSelectedRestaurant(id, title, description, image, tel, lon, lat, zoom, visible)
+        function handleSelectRestaurant(id, title, description, image, tel, lon, lat, delivery, takeaway, zoom, visible) {
+            changeSelectedRestaurant(id, title, description, image, tel, lon, lat, delivery, takeaway, zoom, visible)
         }
 
         let items = data
@@ -52,14 +52,25 @@ export default function List(props) {
             })
             .map((data, i) => {
                 return (
-                    <div className="List__item" onClick={() => handleSelectRestaurant(data._id, data.title, data.description, data.image, data.tel, data.lon, data.lat, 3, 1)}>
+                    <div
+                        key={i}
+                        className="List__item"
+                        onClick={() =>
+                            handleSelectRestaurant(
+                                data._id,
+                                data.title,
+                                data.description,
+                                data.image,
+                                data.tel,
+                                data.lon,
+                                data.lat,
+                                data.delivery,
+                                data.takeaway,
+                                17,
+                                1
+                            )}>
                         <ListItem
-                            key={i}
-                            title={data.title}
-                            description={data.description}
-                            image={data.image}
-                            lat={data.lat}
-                            lon={data.lon}
+                            data={data}
                             location={location}
                         />
                     </div>
@@ -78,7 +89,13 @@ export default function List(props) {
     } else {
         return (
             <div className="List">
-                <span className="loading">Nalagam...</span>
+                <Loader
+                    type="Rings"
+                    color="#7BA47F"
+                    height={60}
+                    width={60}
+                    className="Loading"
+                />
             </div>
         )
     }
