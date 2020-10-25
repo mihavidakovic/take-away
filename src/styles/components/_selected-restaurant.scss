@@ -116,6 +116,7 @@
         .SelectedRestaurant__info--tel {
             font-size: rem(14);
             font-weight: bold;
+            margin-left: $global-margin;
 
             .placeholder__tel {
                 width: 80px;
