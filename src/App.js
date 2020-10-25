@@ -19,14 +19,10 @@ import Edit from "./pages/Admin/Edit/Edit.js";
 
 function App() {
 
-  function initGA()  {       
-    ReactGA.initialize('G-E9ZP8PKRN8'); // put your tracking id here
-    ReactGA.pageview(window.location.pathname + window.location.search);
-
-} 
 
   useEffect(() => {
-    initGA()
+    ReactGA.initialize('UA-133841417-2'); // put your tracking id here
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }, [])
 
   return (
