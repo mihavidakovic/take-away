@@ -65,6 +65,8 @@
         .info__left {
             display: flex;
             flex-flow: column;
+            margin-right: $global-margin;
+            line-height: 1.4;
         }
 
         .info__right {
@@ -116,7 +118,6 @@
         .SelectedRestaurant__info--tel {
             font-size: rem(14);
             font-weight: bold;
-            margin-left: $global-margin;
 
             .placeholder__tel {
                 width: 80px;
