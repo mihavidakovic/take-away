@@ -18,7 +18,7 @@ function SelectedRestaurant() {
                 null,
                 false,
                 false,
-                8, 
+                null, 
                 0
             )
         }

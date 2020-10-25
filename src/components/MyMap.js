@@ -124,6 +124,7 @@ function MyMap(props) {
     }
   ];
 
+
   if (restaurants) {
     return (
       <div className="Map">
