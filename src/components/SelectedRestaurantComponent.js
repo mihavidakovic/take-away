@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import { SelectedRestaurantContext } from '../contexts/SelectedRestaurantContext';
 import { FaArrowLeft, FaCheck, FaTimes, FaPhoneVolume } from 'react-icons/fa';
-import { motion } from "framer-motion"
-
 
 function SelectedRestaurant() {
     const { SelectedRestaurant, changeSelectedRestaurant } = useContext(SelectedRestaurantContext)
@@ -47,16 +45,16 @@ function SelectedRestaurant() {
                     </a>
                 </div>
                 <div className="SelectedRestaurant__available">
-                <div className={data.delivery ? "available__takeaway available" : "available__takeaway"}>
-                    {
-                        data.delivery ? (
-                            <FaCheck />
-                        )
-                        :
-                        (
-                            <FaTimes />
-                        )
-                    }
+                    <div className={data.delivery ? "available__takeaway available" : "available__takeaway"}>
+                        {
+                            data.delivery ? (
+                                <FaCheck />
+                            )
+                            :
+                            (
+                                <FaTimes />
+                            )
+                        }
                         <span>Dostava</span>
                     </div>
                     <div className={data.takeaway ? "available__delivery available" : "available__delivery"}>

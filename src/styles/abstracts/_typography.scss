@@ -2,6 +2,7 @@ h1, h2, h3, h4 {
     color: rgba(#000, 0.8);
     position: relative;
     margin-bottom: $global-margin;
+    margin-top: 0;
     padding: 0;
 
     &:after {
@@ -25,5 +26,5 @@ h3 {
 }
 
 h4 {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }

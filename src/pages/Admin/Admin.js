@@ -12,10 +12,10 @@ function Admin() {
     return (
         <div className="subpage Admin">
             <div className="container">
-                <dvi className="Admin__head">
+                <div className="Admin__head">
                     <h2>Administracija</h2>
                     {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-                </dvi>
+                </div>
                 {isAuthenticated ? <AdminActions /> : <></>}
             </div>
         </div>

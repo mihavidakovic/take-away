@@ -20,16 +20,7 @@ export default function Edit() {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        const frmdetails = {
-            "title": title,
-            "description": description,
-            "tel": tel,
-            "image": image,
-            "lon": lon,
-            "lat": lat,
-            "takeaway": takeaway,
-            "delivery": delivery
-        }
+
         let url = "https://take-away-si.herokuapp.com/restaurants/" + id;
         fetch(url, {
             method: "PATCH",
@@ -58,7 +49,7 @@ export default function Edit() {
             )
     }
 
-    useEffect(() => {
+    function getData(id) {
         let url = "https://take-away-si.herokuapp.com/restaurants/" + id;
         fetch(url)
             .then(res => res.json())
@@ -78,12 +69,14 @@ export default function Edit() {
                     console.log(error)
                 }
             )
-
-    }, [setData])
-
-    const input = () => {
-
     }
+
+    useEffect(() => {
+        
+        getData(id)
+
+    }, [id])
+
 
     if (data && id) {
         return (
@@ -92,35 +85,35 @@ export default function Edit() {
                     <h2>Uredi restavracijo "{data.title}"</h2>
                     <form onSubmit={handleSubmit} className="Form">
                         <div className="Form__control">
-                            <label for="title">Ime restavracije: (<span>*</span>)</label>
+                            <label htmlFor="title">Ime restavracije: (<span>*</span>)</label>
                             <input className="input" type="text" placeholder="Pri Matičku" value={title} onChange={e => setTitle(e.target.value)} />
                         </div>
                         <div className="Form__control">
-                            <label for="title">Opis: (<span>*</span>)</label>
+                            <label htmlFor="title">Opis: (<span>*</span>)</label>
                             <textarea className="input" placeholder="Burgerji, steaki, solate in sladice" rows="3" value={description} onChange={e => setDescription(e.target.value)} />
                         </div>
                         <div className="Form__control">
-                            <label for="title">Slika: (<span>*</span>)</label>
+                            <label htmlFor="title">Slika: (<span>*</span>)</label>
                             <input className="input" type="text" placeholder="https://" value={image} onChange={e => setImage(e.target.value)} />
                         </div>
                         <div className="Form__control">
-                            <label for="title">Telefon: (<span>*</span>)</label>
+                            <label htmlFor="title">Telefon: (<span>*</span>)</label>
                             <input className="input" type="tel" placeholder="+38640999999" value={tel} onChange={e => setTel(e.target.value)} />
                         </div>
                         <div className="Form__control">
-                            <label for="title">Lat: (<span>*</span>)</label>
+                            <label htmlFor="title">Lat: (<span>*</span>)</label>
                             <input className="input" type="text" placeholder="14.44131123" value={lat} onChange={e => setLat(e.target.value)} />
                         </div>
                         <div className="Form__control">
-                            <label for="title">Lon: (<span>*</span>)</label>
+                            <label htmlFor="title">Lon: (<span>*</span>)</label>
                             <input className="input" type="text" placeholder="2.12461354" value={lon} onChange={e => setLon(e.target.value)} />
                         </div>
                         <div className="Form__control">
-                            <label for="title">Dostava: (<span>*</span>)</label>
+                            <label htmlFor="title">Dostava: (<span>*</span>)</label>
                             <input className="input" type="checkbox"  onChange={e => setDelivery(!delivery)} checked={delivery ? "checked" : ""} />
                         </div>
                         <div className="Form__control">
-                            <label for="title">Osebni prevzem: (<span>*</span>)</label>
+                            <label htmlFor="title">Osebni prevzem: (<span>*</span>)</label>
                             <input className="input" type="checkbox"  onChange={e => setTakeaway(!takeaway)}  checked={takeaway ? "checked" : ""} />
                         </div>
                         <div className="From__footer">
