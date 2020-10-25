@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
 import './styles/styles.scss';
+import ReactGA from 'react-ga';
 
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 
@@ -17,6 +18,16 @@ import Manage from "./pages/Admin/Manage/Manage.js";
 import Edit from "./pages/Admin/Edit/Edit.js";
 
 function App() {
+
+  function initGA()  {       
+    ReactGA.initialize('G-E9ZP8PKRN8'); // put your tracking id here
+    ReactGA.pageview(window.location.pathname + window.location.search);
+
+} 
+
+  useEffect(() => {
+    initGA()
+  }, [])
 
   return (
     <Router>
