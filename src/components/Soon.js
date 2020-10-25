@@ -9,7 +9,7 @@ export default function Soon() {
                     <img src={logo} alt="logo" />
                 </div>
                 <div className="logo__text">
-                    <span className="logo__name">Take-away.si</span>
+                    <span className="logo__name">Prevzemi.si</span>
                     <span className="logo__subname">Najdi in naroči</span>
                 </div>
             </div>
